@@ -32,7 +32,11 @@ const Header = () => {
               to={item.path}
               key={index}
               className={({ isActive }) =>
-                clsx('px-4 py-2 rounded-lg text-center', isActive && 'bg-white text-[#07020D] transform transition-all duration-300 ease-in-out')
+                clsx(
+                  "px-4 py-2 rounded-lg text-center",
+                  isActive &&
+                    "bg-white text-[#07020D] transform transition-all duration-300 ease-in-out"
+                )
               }
             >
               {item.page}
@@ -40,14 +44,25 @@ const Header = () => {
           ))}
         </nav>
 
-        <Link className="py-1 px-6 font-semibold text-md border transform -skew-x-14 rounded hover:bg-white" to={"sign-in"}>
-          <ShinyText
-            text="Get Started"
-            disabled={false}
-            speed={3}
-            className="custom-class"
-          />
-        </Link>
+        <NavLink
+          className={({ isActive }) =>
+            clsx(
+              "py-1 px-5 font-semibold text-md border border-purple-600 transform -skew-x-14 rounded hover:bg-purple-600",
+              isActive && "bg-purple-600"
+            )
+          }
+          to={"sign-in"}
+        >
+          {({ isActive }) => (
+            <ShinyText
+              text="Get Started"
+              disabled={false}
+              speed={3}
+              isActive={isActive}
+              className="custom-class"
+            />
+          )}
+        </NavLink>
       </div>
     </header>
   );
