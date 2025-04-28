@@ -63,7 +63,7 @@ const Header = () => {
 
         <button
           onClick={() => setOpenSignIn(true)}
-          className="py-1 px-5 font-semibold text-md border border-purple-600 transform -skew-x-14 rounded hover:bg-purple-600 cursor-pointer">
+          className="py-1 px-5 font-semibold text-md border border-[#6315db] transform -skew-x-14 rounded hover:bg-[#6315db] cursor-pointer">
           Get Started
         </button>
       </div>
