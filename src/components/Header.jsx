@@ -1,0 +1,56 @@
+import React from "react";
+import { Link, NavLink } from "react-router-dom";
+import images from "../assets/images";
+import ShinyText from "./ShinyText.jsx";
+import clsx from "clsx";
+
+const Header = () => {
+  const navBarItems = [
+    { page: "Home", path: "/" },
+    { page: "Pricing", path: "/pricing" },
+    { page: "About Us", path: "/about-us" },
+    { page: "FAQs", path: "/faqs" },
+    { page: "Doc", path: "/documentation" },
+  ];
+  return (
+    <header className="py-1 border-b-2 ">
+      <div className="container mx-auto h-full flex justify-between items-center px-4 py-2">
+        <div>
+          <Link to={"/"}>
+            <img
+              src={images.logo}
+              alt="backwyth-logo"
+              loading="lazy"
+              className="w-24"
+            />
+          </Link>
+        </div>
+
+        <nav className="hidden md:flex md:gap-2 lg:gap-16 items-center font-bold text-md">
+          {navBarItems.map((item, index) => (
+            <NavLink
+              to={item.path}
+              key={index}
+              className={({ isActive }) =>
+                clsx('px-4 py-2 rounded-lg text-center', isActive && 'bg-white text-[#07020D] transform transition-all duration-300 ease-in-out')
+              }
+            >
+              {item.page}
+            </NavLink>
+          ))}
+        </nav>
+
+        <button className="py-1 px-6 font-bold text-md border transform -skew-x-14 rounded">
+          <ShinyText
+            text="Get Started"
+            disabled={false}
+            speed={3}
+            className="custom-class"
+          />
+        </button>
+      </div>
+    </header>
+  );
+};
+
+export default Header;
