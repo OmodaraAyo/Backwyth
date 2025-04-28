@@ -38,7 +38,7 @@ const Header = () => {
               src={images.logo}
               alt="backwyth-logo"
               loading="lazy"
-              className="w-[5.2rem]"
+              className="w-[5.8rem]"
             />
           </Link>
         </div>
