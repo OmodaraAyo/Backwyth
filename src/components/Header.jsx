@@ -38,7 +38,7 @@ const Header = () => {
               src={images.logo}
               alt="backwyth-logo"
               loading="lazy"
-              className="w-[5.2rem]"
+              className="w-[5.8rem]"
             />
           </Link>
         </div>
@@ -63,7 +63,7 @@ const Header = () => {
 
         <button
           onClick={() => setOpenSignIn(true)}
-          className="py-1 px-5 font-semibold text-md border border-purple-600 transform -skew-x-14 rounded hover:bg-purple-600 cursor-pointer">
+          className="py-1 px-5 font-semibold text-md border border-[#6315db] transform -skew-x-14 rounded hover:bg-[#6315db] cursor-pointer">
           Get Started
         </button>
       </div>
