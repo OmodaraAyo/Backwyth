@@ -1,6 +1,7 @@
 import React from "react";
 import Particles from "../components/Particles";
 import { Link } from "react-router-dom";
+import ShinyText from "../components/ShinyText";
 
 const Home = () => {
   return (
@@ -18,7 +19,7 @@ const Home = () => {
         />
       </div>
 
-      <div className="absolute top-0 left-0 right-0 bottom-0 w-full h-full pt-28">
+      <div className="absolute top-0 left-0 right-0 bottom-0 w-full h-full pt-36">
         
         <div className="container mx-auto flex flex-col items-center py-3">
 
@@ -27,7 +28,14 @@ const Home = () => {
 
           <div className="flex mt-5 w-full justify-center items-center flex-col md:flex-row gap-5 md:gap-8 font-semibold text-md">
             <Link className="py-2 px-36 bg-white text-[#07020D]  rounded-lg hover:bg-purple-700 hover:text-white transition duration-300 ease-in-out -skew-x-14">Book a demo</Link>
-            <Link className="py-2 px-10 border border-purple-600 rounded-lg hover:bg-purple-700 transition duration-300 ease-in-out -skew-x-14" to={"sign-in"}>Try it Now</Link>
+            <Link className="py-2 px-10 border border-purple-600 rounded-lg hover:bg-purple-700 transition duration-300 ease-in-out -skew-x-14" to={"sign-in"}>
+                        <ShinyText
+                          text="Try it Now"
+                          disabled={false}
+                          speed={3}
+                          className="custom-class"
+                        />
+                    </Link>
           </div>
 
 

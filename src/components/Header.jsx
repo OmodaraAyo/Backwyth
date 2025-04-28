@@ -53,15 +53,7 @@ const Header = () => {
           }
           to={"sign-in"}
         >
-          {({ isActive }) => (
-            <ShinyText
-              text="Get Started"
-              disabled={false}
-              speed={3}
-              isActive={isActive}
-              className="custom-class"
-            />
-          )}
+          Get Started
         </NavLink>
       </div>
     </header>
