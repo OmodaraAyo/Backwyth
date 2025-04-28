@@ -5,6 +5,7 @@ import Pricing from "../pages/Pricing";
 import AboutUs from "../pages/AboutUs";
 import FAQs from "../pages/FAQs";
 import Documentation from "../pages/Documentation";
+import Login from "../pages/Login";
 
 const ROUTES = createBrowserRouter([
     {
@@ -30,6 +31,10 @@ const ROUTES = createBrowserRouter([
             {
                 path: "documentation",
                 element: <Documentation/>
+            },
+            {
+                path: "sign-in",
+                element: <Login/>
             }
         ]
     }

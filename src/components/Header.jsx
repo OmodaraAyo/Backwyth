@@ -13,8 +13,8 @@ const Header = () => {
     { page: "Doc", path: "/documentation" },
   ];
   return (
-    <header className="py-1 border-b-2 ">
-      <div className="container mx-auto h-full flex justify-between items-center px-4 py-2">
+    <header className="border-b-2 ">
+      <div className="container mx-auto h-full flex justify-between items-center px-4 py-3 ">
         <div>
           <Link to={"/"}>
             <img
@@ -40,14 +40,14 @@ const Header = () => {
           ))}
         </nav>
 
-        <button className="py-1 px-6 font-semibold text-md border transform -skew-x-14 rounded">
+        <Link className="py-1 px-6 font-semibold text-md border transform -skew-x-14 rounded hover:bg-white" to={"sign-in"}>
           <ShinyText
             text="Get Started"
             disabled={false}
             speed={3}
             className="custom-class"
           />
-        </button>
+        </Link>
       </div>
     </header>
   );
