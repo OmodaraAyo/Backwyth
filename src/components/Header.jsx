@@ -21,12 +21,12 @@ const Header = () => {
               src={images.logo}
               alt="backwyth-logo"
               loading="lazy"
-              className="w-24"
+              className="w-[5.2rem]"
             />
           </Link>
         </div>
 
-        <nav className="hidden md:flex md:gap-2 lg:gap-16 items-center font-bold text-md">
+        <nav className="hidden md:flex md:gap-2 lg:gap-16 items-center font-semibold text-md">
           {navBarItems.map((item, index) => (
             <NavLink
               to={item.path}
@@ -40,7 +40,7 @@ const Header = () => {
           ))}
         </nav>
 
-        <button className="py-1 px-6 font-bold text-md border transform -skew-x-14 rounded">
+        <button className="py-1 px-6 font-semibold text-md border transform -skew-x-14 rounded">
           <ShinyText
             text="Get Started"
             disabled={false}
