@@ -20,3 +20,34 @@
     animation: shine 5s linear infinite;
   }
 }
+
+.no-scrollbar::-webkit-scrollbar{
+  display: none;
+}
+
+.noscrollbar{
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+.scrollbar-custom::-webkit-scrollbar {
+  width: 6px;
+}
+
+.scrollbar-custom::-webkit-scrollbar-track {
+  background: #dcdada; 
+}
+
+.scrollbar-custom::-webkit-scrollbar-thumb {
+  background: #6315db;
+  border-radius: 4px;
+  cursor: grab;
+}
+
+.scrollbar-custom::-webkit-scrollbar-thumb:hover {
+  background: #5111b3;
+}
+
+.scrollbar-custom::-webkit-scrollbar-thumb:active {
+  cursor: grabbing;
+}
