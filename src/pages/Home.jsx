@@ -1,10 +1,12 @@
-import React from "react";
+import React, { useState } from "react";
 import Particles from "../components/Particles";
 import { Link } from "react-router-dom";
 import ShinyText from "../components/ShinyText";
-import Login from "./Login";
+import AuthPage from "./AuthPage";
 
 const Home = () => {
+  const [showAuthPage, setshowAuthPage] = useState(false);
+  
   return (
     <section>
       <div className="relative w-full h-full overflow-hidden">
@@ -28,12 +30,14 @@ const Home = () => {
               <p className="text-center text-[#b5b5b5a4] text-lg">Revolutionizing Business Connectivity with Instant, Reliable, and Hassle-Free USSD Solutions.</p>
 
               <div className="flex mt-5 w-full justify-center items-center flex-col md:flex-row gap-5 md:gap-8 font-semibold text-md">
-                <Link className="py-2 px-36 bg-white text-[#07020D]  rounded-lg hover:bg-[#6315db] hover:text-white transition duration-300 ease-in-out -skew-x-14">Book a demo</Link>
-                <Link className="py-2 px-10 border border-[#6315db] rounded-lg hover:bg-[#6315db] transition duration-300 ease-in-out -skew-x-14" to={"sign-in"}><ShinyText text="Try it Now" disabled={false} speed={3} className="custom-class"/></Link>
+                <Link className="py-2 px-36 bg-white text-[#07020D] rounded-lg hover:bg-[#6315db] hover:text-white transition duration-300 ease-in-out -skew-x-14">Book a demo</Link>
+                <button onClick={() => setshowAuthPage(true)} className="py-2 px-10 border border-[#6315db] rounded-lg hover:bg-[#6315db] transition duration-300 ease-in-out -skew-x-14 cursor-pointer"><ShinyText text="Try it Now" disabled={false} speed={3} className="custom-class"/></button>
               </div>
             </div>
           </div>
       </div>
+
+      {showAuthPage && <AuthPage onClose={() => setshowAuthPage(false)} showLogin={true}/>}
     </section>
   );
 };

@@ -1,13 +1,12 @@
 import React, { useEffect, useState } from "react";
 import { Link, NavLink } from "react-router-dom";
 import images from "../assets/images";
-import ShinyText from "./ShinyText.jsx";
 import clsx from "clsx";
-import Login from "../pages/Login.jsx";
+import AuthPage from "../pages/AuthPage.jsx";
 
 const Header = () => {
   const [isScrolled, setIsScrolled] = useState(false);
-  const [openSignUp, setOpenSignIn] = useState(false);
+  const [showAuthPage, setshowAuthPage] = useState(false);
 
   const navBarItems = [
     { page: "Home", path: "/" },
@@ -62,12 +61,12 @@ const Header = () => {
         </nav>
 
         <button
-          onClick={() => setOpenSignIn(true)}
+          onClick={() => setshowAuthPage(true)}
           className="py-1 px-5 font-semibold text-md border border-[#6315db] transform -skew-x-14 rounded hover:bg-[#6315db] cursor-pointer">
           Get Started
         </button>
       </div>
-      {openSignUp && <Login onClose={() => setOpenSignIn(false)} />}
+      {showAuthPage && <AuthPage onClose={() => setshowAuthPage(false)} showLogin={true}/>}
     </header>
   );
 };
