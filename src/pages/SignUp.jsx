@@ -1,8 +1,10 @@
 import React, { useState } from "react";
 import { SignUpApi } from "../api/SignUpApi.jsx";
+import { ButtonLoader } from "../Utils/Utils.jsx";
 
 const SignUp = ({ setShowLogin }) => {
   const [phoneNumbers, setPhoneNumbers] = useState([""]);
+  const [isloading, setIsLoading] = useState(false);
   const categories = [
     { value: "finance", label: "Finance" },
     { value: "healthCare", label: "Healthcare" },
@@ -55,6 +57,7 @@ const SignUp = ({ setShowLogin }) => {
     console.log("from sign-up",payload)
 
     const response = await SignUpApi(payload)
+    setIsLoading(true)
     console.log("from sign-up",response.data)
 
     if(response.data?.status === 200) {
@@ -161,9 +164,9 @@ const SignUp = ({ setShowLogin }) => {
           <button
             type="submit"
             onClick={handleSubmit}
-            className="w-full px-4 py-3 bg-[#6315db] text-white font-medium rounded hover:bg-[#5111b3] transition duration-300 ease-in-out cursor-pointer"
+            className="w-full px-4 py-3 bg-[#6315db] text-white font-medium rounded hover:bg-[#5111b3] transition duration-300 ease-in-out cursor-pointer flex items-center justify-center gap-2"
           >
-            Sign Up
+            {isloading ? <ButtonLoader /> : "Sign Up"}
           </button>
         </form>
       </div>
