@@ -56,8 +56,8 @@ const SignUp = ({ setShowLogin }) => {
     }
     console.log("from sign-up",payload)
 
-    const response = await SignUpApi(payload)
     setIsLoading(true)
+    const response = await SignUpApi(payload)
     console.log("from sign-up",response.data)
 
     if(response.data?.status === 200) {
@@ -65,6 +65,7 @@ const SignUp = ({ setShowLogin }) => {
       console.log("Hi dev")
       setShowLogin(true)
     } else {
+      setIsLoading(false)
       alert("Error creating account")
     }
 
