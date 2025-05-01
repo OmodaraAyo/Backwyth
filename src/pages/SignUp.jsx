@@ -18,7 +18,7 @@ const SignUp = ({ setShowLogin }) => {
     businessRegistrationNumber: "",
     category: "",
   });
-  console.log("from sign-up: okayyy",data)
+  console.log("from sign-up: ",data)
 
   const addPhoneField = () => {
     setPhoneNumbers([...phoneNumbers, ""]);
@@ -55,8 +55,9 @@ const SignUp = ({ setShowLogin }) => {
     console.log("from sign-up",payload)
 
     const response = await SignUpApi(payload)
-    console.log("from sign-up",response)
-    if(response?.status === 200) {
+    console.log("from sign-up",response.data)
+
+    if(response.data?.status === 200) {
       alert("Account created successfully")
       console.log("Hi dev")
       setShowLogin(true)
