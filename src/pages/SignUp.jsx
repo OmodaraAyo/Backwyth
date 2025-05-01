@@ -58,6 +58,7 @@ const SignUp = ({ setShowLogin }) => {
     console.log("from sign-up",response)
     if(response?.status === 200) {
       alert("Account created successfully")
+      console.log("Hi dev")
       setShowLogin(true)
     } else {
       alert("Error creating account")
