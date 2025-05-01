@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { SignUpApi } from "../api/SignUPApi";
+import { SignUpApi } from "../api/SignUpApi.jsx";
 
 const SignUp = ({ setShowLogin }) => {
   const [phoneNumbers, setPhoneNumbers] = useState([""]);
