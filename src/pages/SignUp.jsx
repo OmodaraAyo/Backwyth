@@ -18,7 +18,7 @@ const SignUp = ({ setShowLogin }) => {
     businessRegistrationNumber: "",
     category: "",
   });
-  console.log("from sign-up",data)
+  console.log("from sign-up: okayyy",data)
 
   const addPhoneField = () => {
     setPhoneNumbers([...phoneNumbers, ""]);
