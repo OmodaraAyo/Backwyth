@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { SignUpApi } from "../api/SignUPApi";
 
 const SignUp = ({ setShowLogin }) => {
   const [phoneNumbers, setPhoneNumbers] = useState([""]);
@@ -10,6 +11,14 @@ const SignUp = ({ setShowLogin }) => {
     { value: "education", label: "Education" },
     { value: "ecommerce", label: "Ecommerce" },
   ];
+  const [data, setData] = useState({
+    companyName: "",
+    companyPhone: [],
+    companyEmail: "",
+    businessRegistrationNumber: "",
+    category: "",
+  });
+  console.log("from sign-up",data)
 
   const addPhoneField = () => {
     setPhoneNumbers([...phoneNumbers, ""]);
@@ -26,6 +35,36 @@ const SignUp = ({ setShowLogin }) => {
     setPhoneNumbers(updatedPhones);
   };
 
+  const handleChange = (e)=> {
+    const {name, value} = e.target
+    
+    setData((preve)=> {
+      return {
+        ...preve,
+        [name]: value
+      }
+    })
+  }
+
+  const handleSubmit = async (e)=> {
+    e.preventDefault()
+    const payload = {
+      ...data,
+      companyPhone: phoneNumbers
+    }
+    console.log("from sign-up",payload)
+
+    const response = await SignUpApi(payload)
+    console.log("from sign-up",response)
+    if(response?.status === 200) {
+      alert("Account created successfully")
+      setShowLogin(true)
+    } else {
+      alert("Error creating account")
+    }
+
+  }
+
   return (
     <section id="sign-up" className="h-full flex flex-col px-4 py-6">
       <div className="flex-grow">
@@ -39,6 +78,8 @@ const SignUp = ({ setShowLogin }) => {
           <input
             type="text"
             name="companyName"
+            onChange={handleChange}
+            value={data.companyName}
             placeholder="Company Name"
             className="text-[#07020D] placeholder:text-[#b5b5b5a4] border w-full px-3 py-2 md:p-3 outline-none focus:outline-none focus:ring-0 focus:border focus:border-[#6315db] rounded"
             required
@@ -81,6 +122,8 @@ const SignUp = ({ setShowLogin }) => {
           <input
             type="email"
             name="companyEmail"
+            onChange={handleChange}
+            value={data.companyEmail}
             placeholder="Company Email"
             className="text-[#07020D] placeholder:text-[#b5b5b5a4] border w-full px-3 py-2 md:p-3 outline-none focus:outline-none focus:ring-0 focus:border focus:border-[#6315db] rounded"
             required
@@ -90,6 +133,8 @@ const SignUp = ({ setShowLogin }) => {
           <input
             type="text"
             name="businessRegistrationNumber"
+            onChange={handleChange}
+            value={data.businessRegistrationNumber}
             placeholder="Business Registration Number"
             className="text-[#07020D] placeholder:text-[#b5b5b5a4] border w-full px-3 py-2 md:p-3 outline-none focus:outline-none focus:ring-0 focus:border focus:border-[#6315db] rounded"
             required
@@ -98,6 +143,8 @@ const SignUp = ({ setShowLogin }) => {
           {/* Business Category (Dropdown) */}
           <select
             name="category"
+            onChange={handleChange}
+            value={data.category}
             className="text-[#07020D] placeholder:text-[#b5b5b5a4] border w-full px-3 py-2 md:p-3 outline-none focus:outline-none focus:ring-0 focus:border focus:border-[#6315db] rounded"
             required
           >
@@ -111,6 +158,7 @@ const SignUp = ({ setShowLogin }) => {
 
           <button
             type="submit"
+            onClick={handleSubmit}
             className="w-full px-4 py-3 bg-[#6315db] text-white font-medium rounded hover:bg-[#5111b3] transition duration-300 ease-in-out cursor-pointer"
           >
             Sign Up
