@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { SignUpApi } from "../api/SignUPApi";
+import { SignUpApi } from "../api/SignUpApi.jsx";
 
 const SignUp = ({ setShowLogin }) => {
   const [phoneNumbers, setPhoneNumbers] = useState([""]);
@@ -18,7 +18,7 @@ const SignUp = ({ setShowLogin }) => {
     businessRegistrationNumber: "",
     category: "",
   });
-  console.log("from sign-up",data)
+  console.log("from sign-up: okayyy",data)
 
   const addPhoneField = () => {
     setPhoneNumbers([...phoneNumbers, ""]);
