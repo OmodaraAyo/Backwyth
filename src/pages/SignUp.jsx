@@ -66,7 +66,7 @@ const SignUp = ({ setShowLogin }) => {
   };
 
   return (
-    <section id="sign-up" className="min-h-screen flex flex-col px-4 py-6">
+    <section id="sign-up" className="h-[100%] flex flex-col px-4 py-6">
       <div className="flex-grow">
         <h1 className="text-[#07020D] font-semibold text-2xl">
           Create Account
