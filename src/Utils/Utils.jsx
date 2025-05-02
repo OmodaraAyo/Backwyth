@@ -1,7 +1,7 @@
 import { ClipLoader } from "react-spinners";
 export const ButtonLoader = ()=> {
     return(
-        <div className="mt-2">
+        <div>
             <ClipLoader
                 color="#fff"
                 size={18}
