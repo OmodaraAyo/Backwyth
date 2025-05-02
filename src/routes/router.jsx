@@ -7,6 +7,7 @@ import FAQs from "../pages/FAQs";
 import Documentation from "../pages/Documentation";
 import Login from "../pages/Login";
 import SignUp from "../pages/SignUp";
+import LandingPage from "../pages/LandingPage";
 
 const ROUTES = createBrowserRouter([
     {
@@ -15,7 +16,7 @@ const ROUTES = createBrowserRouter([
         children: [
             {
                 path: "",
-                element: <Home/>
+                element: <LandingPage/>
             },
             {
                 path: "pricing",

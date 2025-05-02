@@ -1,18 +1,12 @@
 import React, { useState } from "react";
 import { SignUpApi } from "../api/SignUpApi.jsx";
 import { ButtonLoader } from "../Utils/Utils.jsx";
+import { toast } from "react-toastify";
+import { categories } from "../assets/MultiListView.jsx";
 
 const SignUp = ({ setShowLogin }) => {
   const [phoneNumbers, setPhoneNumbers] = useState([""]);
   const [isloading, setIsLoading] = useState(false);
-  const categories = [
-    { value: "finance", label: "Finance" },
-    { value: "healthCare", label: "Healthcare" },
-    { value: "technology", label: "Technology" },
-    { value: "social", label: "Social" },
-    { value: "education", label: "Education" },
-    { value: "ecommerce", label: "Ecommerce" },
-  ];
   const [data, setData] = useState({
     companyName: "",
     companyPhone: [],
@@ -20,7 +14,6 @@ const SignUp = ({ setShowLogin }) => {
     businessRegistrationNumber: "",
     category: "",
   });
-  console.log("from sign-up: ",data)
 
   const addPhoneField = () => {
     setPhoneNumbers([...phoneNumbers, ""]);
@@ -37,49 +30,52 @@ const SignUp = ({ setShowLogin }) => {
     setPhoneNumbers(updatedPhones);
   };
 
-  const handleChange = (e)=> {
-    const {name, value} = e.target
-    
-    setData((preve)=> {
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+
+    setData((preve) => {
       return {
         ...preve,
-        [name]: value
-      }
-    })
-  }
+        [name]: value,
+      };
+    });
+  };
 
-  const handleSubmit = async (e)=> {
-    e.preventDefault()
+  const handleSubmit = async (e) => {
+    e.preventDefault();
     const payload = {
       ...data,
-      companyPhone: phoneNumbers
+      companyPhone: phoneNumbers,
+    };
+
+    try {
+      setIsLoading(true);
+      const response = await SignUpApi(payload);
+      // console.log("api response: ", response);
+
+      if (response?.status === 200) {
+        setIsLoading(false);
+        toast.success(`${response?.data?.data?.message}`);
+        setShowLogin(true);
+      }
+    } catch (error) {
+        setIsLoading(false)
+        // console.log("Error: ", error);
+        toast.error("Error creating account: "+error?.message)
     }
-    console.log("from sign-up",payload)
-
-    setIsLoading(true)
-    const response = await SignUpApi(payload)
-    console.log("from sign-up",response.data)
-
-    if(response.data?.status === 200) {
-      alert("Account created successfully")
-      console.log("Hi dev")
-      setShowLogin(true)
-    } else {
-      setIsLoading(false)
-      alert("Error creating account")
-    }
-
-  }
+  };
 
   return (
     <section id="sign-up" className="h-full flex flex-col px-4 py-6">
       <div className="flex-grow">
-        <h1 className="text-[#07020D] font-semibold text-2xl">Create Account</h1>
+        <h1 className="text-[#07020D] font-semibold text-2xl">
+          Create Account
+        </h1>
         <p className="text-[#838282] text-md mt-2">
           Fill in your company details to create an account.
         </p>
 
-        <form className="grid grid-cols-1 gap-5 mt-8">
+        <form className="grid grid-cols-1 gap-5 mt-8" onSubmit={handleSubmit}>
           {/* Company Name */}
           <input
             type="text"
@@ -87,7 +83,7 @@ const SignUp = ({ setShowLogin }) => {
             onChange={handleChange}
             value={data.companyName}
             placeholder="Company Name"
-            className="text-[#07020D] placeholder:text-[#b5b5b5a4] border w-full px-3 py-2 md:p-3 outline-none focus:outline-none focus:ring-0 focus:border focus:border-[#6315db] rounded"
+            className="text-[#07020D] placeholder:text-[#b5b5b5a4] border w-full px-3 py-2 md:p-3 outline-none focus:outline-none focus:ring-0 focus:border focus:border-[#6315db] rounded focus-within:shadow-lg "
             required
           />
 
@@ -101,7 +97,7 @@ const SignUp = ({ setShowLogin }) => {
                   value={phone}
                   onChange={(e) => updatePhoneNumber(index, e.target.value)}
                   placeholder="Phone number"
-                  className="text-[#07020D] placeholder:text-[#b5b5b5a4] border w-full px-3 py-2 md:p-3 outline-none focus:outline-none focus:ring-0 focus:border focus:border-[#6315db] rounded"
+                  className="text-[#07020D] placeholder:text-[#b5b5b5a4] border w-full px-3 py-2 md:p-3 outline-none focus:outline-none focus:ring-0 focus:border focus:border-[#6315db] rounded focus-within:shadow-lg "
                   required
                 />
                 {phoneNumbers.length > 1 && (
@@ -131,7 +127,7 @@ const SignUp = ({ setShowLogin }) => {
             onChange={handleChange}
             value={data.companyEmail}
             placeholder="Company Email"
-            className="text-[#07020D] placeholder:text-[#b5b5b5a4] border w-full px-3 py-2 md:p-3 outline-none focus:outline-none focus:ring-0 focus:border focus:border-[#6315db] rounded"
+            className="text-[#07020D] placeholder:text-[#b5b5b5a4] border w-full px-3 py-2 md:p-3 outline-none focus:outline-none focus:ring-0 focus:border focus:border-[#6315db] rounded focus-within:shadow-lg "
             required
           />
 
@@ -142,7 +138,7 @@ const SignUp = ({ setShowLogin }) => {
             onChange={handleChange}
             value={data.businessRegistrationNumber}
             placeholder="Business Registration Number"
-            className="text-[#07020D] placeholder:text-[#b5b5b5a4] border w-full px-3 py-2 md:p-3 outline-none focus:outline-none focus:ring-0 focus:border focus:border-[#6315db] rounded"
+            className="text-[#07020D] placeholder:text-[#b5b5b5a4] border w-full px-3 py-2 md:p-3 outline-none focus:outline-none focus:ring-0 focus:border focus:border-[#6315db] rounded focus-within:shadow-lg "
             required
           />
 
@@ -151,10 +147,12 @@ const SignUp = ({ setShowLogin }) => {
             name="category"
             onChange={handleChange}
             value={data.category}
-            className="text-[#07020D] placeholder:text-[#b5b5b5a4] border w-full px-3 py-2 md:p-3 outline-none focus:outline-none focus:ring-0 focus:border focus:border-[#6315db] rounded"
+            className="text-[#07020D] placeholder:text-[#b5b5b5a4] border w-full px-3 py-2 md:p-3 outline-none focus:outline-none focus:ring-0 focus:border focus:border-[#6315db] rounded focus-within:shadow-lg "
             required
           >
-            <option disabled hidden>Select Business Category</option>
+            <option value={""} disabled>
+              Select Business Category
+            </option>
             {categories.map(({ value, label }) => (
               <option key={value} value={value}>
                 {label}
@@ -164,7 +162,7 @@ const SignUp = ({ setShowLogin }) => {
 
           <button
             type="submit"
-            onClick={handleSubmit}
+            disabled={isloading}
             className="w-full px-4 py-3 bg-[#6315db] text-white font-medium rounded hover:bg-[#5111b3] transition duration-300 ease-in-out cursor-pointer flex items-center justify-center gap-2"
           >
             {isloading ? <ButtonLoader /> : "Sign Up"}
@@ -174,7 +172,15 @@ const SignUp = ({ setShowLogin }) => {
 
       {/* Link to Sign In */}
       <div className="mt-8">
-        <p className="text-[#07020D] text-sm">Already have an account?{" "}<button className="font-semibold text-[#6315db] hover:underline underline-offset-2 transition duration-300 ease-in-out cursor-pointer" onClick={() => setShowLogin(true)}>Sign In</button></p>
+        <p className="text-[#07020D] text-sm">
+          Already have an account?{" "}
+          <button
+            className="font-semibold text-[#6315db] hover:underline underline-offset-2 transition duration-300 ease-in-out cursor-pointer"
+            onClick={() => setShowLogin(true)}
+          >
+            Sign In
+          </button>
+        </p>
       </div>
     </section>
   );
