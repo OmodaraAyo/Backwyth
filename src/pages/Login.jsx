@@ -55,7 +55,7 @@ const Login = ({ setShowLogin}) => {
 
 
   return (
-    <section id="login" className="h-full flex flex-col px-4 py-6">
+    <section id="login" className="min-h-screen flex flex-col px-4 py-6">
         <div className="flex-grow">
             <h1 className="text-[#07020D] font-semibold text-2xl">Sign In</h1>
             <p className="text-[#838282] font-normal text-md mt-2">Enter your email and password to login to your account.</p>

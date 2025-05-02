@@ -51,3 +51,14 @@
 .scrollbar-custom::-webkit-scrollbar-thumb:active {
   cursor: grabbing;
 }
+
+
+html,
+body {
+  height: 100%;
+  overscroll-behavior-y: contain; /* optional: prevent bouncing */
+}
+
+#authentication {
+  height: 100dvh; /* modern units for dynamic viewport */
+}
