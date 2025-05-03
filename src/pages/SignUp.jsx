@@ -77,29 +77,33 @@ const SignUp = ({ setShowLogin }) => {
 
         <form className="grid grid-cols-1 gap-5 mt-8" onSubmit={handleSubmit}>
           {/* Company Name */}
-          <input
-            type="text"
-            name="companyName"
-            onChange={handleChange}
-            value={data.companyName}
-            placeholder="Company Name"
-            className="text-[#07020D] placeholder:text-[#b5b5b5a4] border w-full px-3 py-2 md:p-3 outline-none focus:outline-none focus:ring-0 focus:border focus:border-[#6315db] rounded focus-within:shadow-lg "
-            required
-          />
+          <div className="relative rounded-lg bg-white border border-gray-300 focus-within:border-[#6315db] focus-within:ring-2 focus-within:ring-[#6315db]/30 focus-within:shadow-md transition-all duration-300">
+            <input
+              type="text"
+              name="companyName"
+              onChange={handleChange}
+              value={data.companyName}
+              placeholder="Company Name"
+              className="w-full px-4 py-3 text-base text-gray-900 placeholder:text-gray-400 bg-transparent outline-none rounded-lg"
+              required
+            />
+          </div>
 
           {/* Phone Numbers */}
           <div className="space-y-4">
             {phoneNumbers.map((phone, index) => (
               <div key={index} className="flex items-center gap-2">
-                <input
-                  type="text"
-                  name="companyPhone"
-                  value={phone}
-                  onChange={(e) => updatePhoneNumber(index, e.target.value)}
-                  placeholder="Phone number"
-                  className="text-[#07020D] placeholder:text-[#b5b5b5a4] border w-full px-3 py-2 md:p-3 outline-none focus:outline-none focus:ring-0 focus:border focus:border-[#6315db] rounded focus-within:shadow-lg "
-                  required
-                />
+                <div className="relative rounded-lg bg-white border border-gray-300 focus-within:border-[#6315db] focus-within:ring-2 focus-within:ring-[#6315db]/30 focus-within:shadow-md transition-all duration-300 flex-grow">
+                  <input
+                    type="text"
+                    name="companyPhone"
+                    value={phone}
+                    onChange={(e) => updatePhoneNumber(index, e.target.value)}
+                    placeholder="Phone number"
+                    className="w-full px-4 py-3 text-base text-gray-900 placeholder:text-gray-400 bg-transparent outline-none rounded-lg"
+                    required
+                  />
+                </div>
                 {phoneNumbers.length > 1 && (
                   <button
                     type="button"
@@ -121,50 +125,55 @@ const SignUp = ({ setShowLogin }) => {
           </div>
 
           {/* Email */}
-          <input
-            type="email"
-            name="companyEmail"
-            onChange={handleChange}
-            value={data.companyEmail}
-            placeholder="Company Email"
-            className="text-[#07020D] placeholder:text-[#b5b5b5a4] border w-full px-3 py-2 md:p-3 outline-none focus:outline-none focus:ring-0 focus:border focus:border-[#6315db] rounded focus-within:shadow-lg "
-            required
-          />
+          <div className="relative rounded-lg bg-white border border-gray-300 focus-within:border-[#6315db] focus-within:ring-2 focus-within:ring-[#6315db]/30 focus-within:shadow-md transition-all duration-300">
+            <input
+              type="email"
+              name="companyEmail"
+              onChange={handleChange}
+              value={data.companyEmail}
+              placeholder="Company Email"
+              className="w-full px-4 py-3 text-base text-gray-900 placeholder:text-gray-400 bg-transparent outline-none rounded-lg"
+              required
+            />
+          </div>
 
           {/* Business Registration Number */}
-          <input
-            type="text"
-            name="businessRegistrationNumber"
-            onChange={handleChange}
-            value={data.businessRegistrationNumber}
-            placeholder="Business Registration Number"
-            className="text-[#07020D] placeholder:text-[#b5b5b5a4] border w-full px-3 py-2 md:p-3 outline-none focus:outline-none focus:ring-0 focus:border focus:border-[#6315db] rounded focus-within:shadow-lg "
-            required
-          />
+          <div className="relative rounded-lg bg-white border border-gray-300 focus-within:border-[#6315db] focus-within:ring-2 focus-within:ring-[#6315db]/30 focus-within:shadow-md transition-all duration-300">
+            <input
+              type="text"
+              name="businessRegistrationNumber"
+              onChange={handleChange}
+              value={data.businessRegistrationNumber}
+              placeholder="Business Registration Number"
+              className="w-full px-4 py-3 text-base text-gray-900 placeholder:text-gray-400 bg-transparent outline-none rounded-lg"
+              required
+            />
+          </div>
 
           {/* Business Category (Dropdown) */}
           <select
             name="category"
             onChange={handleChange}
             value={data.category}
-            className="text-[#07020D] placeholder:text-[#b5b5b5a4] border w-full px-3 py-2 md:p-3 outline-none focus:outline-none focus:ring-0 focus:border focus:border-[#6315db] rounded focus-within:shadow-lg "
             required
+            className="w-full px-4 py-3 text-sm md:text-base text-gray-900 border border-gray-300 rounded-lg bg-white outline-none transition-all duration-200 ease-in-out 
+                      focus:border-[#6315db] focus:ring-2 focus:ring-[#6315db]/30 focus:shadow-md placeholder:text-gray-400"
           >
-            <option value={""} disabled>
-              Select Business Category
-            </option>
+            <option value="" disabled>Select Business Category</option>
             {categories.map(({ value, label }) => (
-              <option key={value} value={value}>
-                {label}
+            <option key={value} value={value}>
+            {label}
               </option>
-            ))}
+          ))}
           </select>
 
           <button
             type="submit"
             disabled={isloading}
-            className="w-full px-4 py-3 bg-[#6315db] text-white font-medium rounded hover:bg-[#5111b3] transition duration-300 ease-in-out cursor-pointer flex items-center justify-center gap-2"
-          >
+            className={`w-full px-4 py-3 text-base rounded-lg text-white font-medium transition duration-300 ease-in-out flex items-center justify-center gap-2 
+            ${isloading ? 'bg-[#6315db]/70 cursor-not-allowed' : 'bg-[#6315db] hover:bg-[#5111b3] cursor-pointer'} 
+              disabled:opacity-60`}
+            >
             {isloading ? <ButtonLoader /> : "Sign Up"}
           </button>
         </form>

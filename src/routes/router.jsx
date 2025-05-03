@@ -8,6 +8,7 @@ import Documentation from "../pages/Documentation";
 import Login from "../pages/Login";
 import SignUp from "../pages/SignUp";
 import LandingPage from "../pages/LandingPage";
+import Dashboard from "../pages/Dashboard";
 
 const ROUTES = createBrowserRouter([
     {
@@ -41,8 +42,12 @@ const ROUTES = createBrowserRouter([
             {
                 path: "sign-up",
                 element: <SignUp/>
+            },
+            {
+                path: "dashboard",
+                element: <Dashboard/>
             }
         ]
-    }
+    },
 ])
 export default ROUTES;
