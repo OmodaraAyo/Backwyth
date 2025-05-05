@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, Outlet } from "react-router-dom";
 import Particles from "../components/Particles";
 
 const Dashboard = () => {
@@ -11,6 +11,14 @@ const Dashboard = () => {
     baseUrl: ""
   });
 
+  const adminPanelItems = [
+    { name: "Profile", path: "/profile" },
+    { name: "Add New Menu", path: "/add-menu" },
+    { name: "Feedback", path: "/feedback" },
+    { name: "Notifications", path: "/notifications" },
+    { name: "Support", path: "/support" },
+    { name: "Settings", path: "/settings" }
+  ]
   const handleInputChange = (e, index) => {
     const { name, value } = e.target;
     if (name === "companyPhone") {
@@ -30,31 +38,29 @@ const Dashboard = () => {
   };
 
   return (
-    <div className="min-h-screen bg-[#07020D] text-white flex">
+    <div className="min-h-[calc(100vh-120px)] bg-[#07020D] text-white flex">
       {/* Sidebar */}
       <div className="w-64 bg-[#07020D] border-r border-[#6315db]/30 p-6">
-        <h2 className="text-2xl font-bold mb-8 text-[#6315db]">Admin Panel</h2>
-        <nav className="space-y-3">
-          <Link to="#" className="block py-2 px-4 hover:bg-[#6315db]/20 rounded-lg transition">
-            Dashboard
-          </Link>
-          <Link to="#" className="block py-2 px-4 hover:bg-[#6315db]/20 rounded-lg transition">
-            Add New Menu
-          </Link>
-          <Link to="#" className="block py-2 px-4 hover:bg-[#6315db]/20 rounded-lg transition">
-            Company Info
-          </Link>
-          <Link to="#" className="block py-2 px-4 hover:bg-[#6315db]/20 rounded-lg transition">
-            Menus
-          </Link>
-          <Link to="#" className="block py-2 px-4 hover:bg-[#6315db]/20 rounded-lg transition">
-            Settings
-          </Link>
-        </nav>
+        <h2 className="px-2 text-2xl font-bold mb-8 text-[#6315db]">Admin Panel</h2>
+        <aside className="space-y-3">
+          {adminPanelItems.map((item, index) => (
+            <Link
+              to={"/dashboard"+item.path}
+              key={index}
+              className="block py-2 px-4 hover:bg-[#6315db]/20 rounded-lg transition"
+            >
+              {item.name}
+            </Link>
+          ))}
+        </aside>
       </div>
 
+      <main className="w-full h-full p-2">
+        <Outlet />
+      </main>
+
       {/* Main Content */}
-      <div className="flex-1 p-8 relative overflow-hidden">
+      {/* <div className="flex-1 p-8 relative overflow-hidden">
         <div className="absolute inset-0 -z-10">
           <Particles
             particleColors={["#6315db", "#ffffff"]}
@@ -91,7 +97,7 @@ const Dashboard = () => {
               + Add Phone Number
             </button>
 
-            {/* Other Fields */}
+            Other Fields
             {[
               { label: "Business Registration Number", name: "businessRegistrationNumber" },
               { label: "Category", name: "category" },
@@ -120,7 +126,7 @@ const Dashboard = () => {
             </button>
           </div>
         </form>
-      </div>
+      </div> */}
     </div>
   );
 };

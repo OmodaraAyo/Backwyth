@@ -5,10 +5,15 @@ import Pricing from "../pages/Pricing";
 import AboutUs from "../pages/AboutUs";
 import FAQs from "../pages/FAQs";
 import Documentation from "../pages/Documentation";
-import Login from "../pages/Login";
-import SignUp from "../pages/SignUp";
 import LandingPage from "../pages/LandingPage";
 import Dashboard from "../pages/Dashboard";
+import AuthPage from "../pages/AuthPage";
+import Profile from "../pages/Profile";
+import NewMenu from "../pages/NewMenu";
+import Feedback from "../pages/Feedback";
+import Notification from "../pages/Notification";
+import Support from "../pages/Support";
+import Settings from "../pages/Settings";
 
 const ROUTES = createBrowserRouter([
     {
@@ -16,37 +21,57 @@ const ROUTES = createBrowserRouter([
         element: <App />,
         children: [
             {
-                path: "",
-                element: <LandingPage/>
+                path: "", 
+                element: <LandingPage/> 
             },
             {
-                path: "pricing",
-                element: <Pricing/>
+                path: "pricing", 
+                element: <Pricing/> },
+            { path: "about-us", element: <AboutUs/> 
+
             },
             {
-                path: "about-us",
-                element: <AboutUs/>
-            },
-            {
-                path: "faqs",
-                element: <FAQs/>
+                path: "faqs", 
+                element: <FAQs/> 
             },
             {
                 path: "documentation",
-                element: <Documentation/>
+                element: <Documentation/> 
             },
             {
-                path: "sign-in",
-                element: <Login/>
-            },
-            {
-                path: "sign-up",
-                element: <SignUp/>
+                path: "auth", 
+                element: <AuthPage/> 
             },
             {
                 path: "dashboard",
-                element: <Dashboard/>
-            }
+                element: <Dashboard/>,
+                children: [
+                    {
+                        path: "profile",
+                        element: <Profile/>,
+                    },
+                    {
+                        path: "add-menu",
+                        element: <NewMenu/>,
+                    },
+                    {
+                        path: "feedback",
+                        element: <Feedback/>,
+                    },
+                    {
+                        path: "notifications",
+                        element: <Notification/>,
+                    },
+                    {
+                        path: "support",
+                        element: <Support/>,
+                    },
+                    {
+                        path: "settings",
+                        element: <Settings/>,
+                    },
+                ]
+            },
         ]
     },
 ])
