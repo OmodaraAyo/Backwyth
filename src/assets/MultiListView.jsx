@@ -12,3 +12,12 @@ export const otherSignInOptions = [
     { value: "education", label: "Education" },
     { value: "ecommerce", label: "Ecommerce" },
   ];
+
+export const navBarItems = [
+  { page: "Home", path: "/" },
+  { page: "Pricing", path: "/pricing" },
+  { page: "About Us", path: "/about-us" },
+  { page: "FAQs", path: "/faqs" },
+  { page: "Doc", path: "/documentation" },
+  { page: "Dashboard", path: "/dashboard/profile" },
+];
