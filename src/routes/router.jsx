@@ -1,4 +1,4 @@
-import { createBrowserRouter } from "react-router-dom";
+import { createBrowserRouter, Navigate } from "react-router-dom";
 import App from "../App";
 import Home from "../pages/Home";
 import Pricing from "../pages/Pricing";
@@ -46,6 +46,11 @@ const ROUTES = createBrowserRouter([
                 path: "dashboard",
                 element: <Dashboard/>,
                 children: [
+                    {
+                        path: "",
+                        element: <Navigate to="profile" replace />
+                    }
+                    ,
                     {
                         path: "profile",
                         element: <Profile/>,

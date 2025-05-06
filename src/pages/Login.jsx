@@ -6,6 +6,7 @@ import { ButtonLoader } from "../Utils/Utils";
 import { toast } from "react-toastify";
 import Context from "../context";
 import { useNavigate } from "react-router";
+import CustomEyeButton from "../reusables/CustomEyeButton";
 
 const Login = ({ setShowLogin }) => {
   const [data, setData] = useState({
@@ -36,7 +37,7 @@ const Login = ({ setShowLogin }) => {
         setIsLoading(false);
         toast.success(`${response?.data?.data?.response}`);
         fetchCurrentUserDetails();
-        navigate("/dashboard");
+        navigate("/dashboard/profile");
         // setShowLogin(false);
       }
     } catch (error) {
@@ -80,12 +81,8 @@ const Login = ({ setShowLogin }) => {
               className="w-full px-4 py-3 text-base text-gray-900 placeholder:text-gray-400 bg-transparent outline-none rounded-lg"
               required
             />
-            <div
-              className="cursor-pointer text-black text-xl absolute top-1/2 right-1 transform -translate-x-1/2 -translate-y-1/2 z-40"
-              onClick={() => setShowPassword((prev) => !prev)}
-            >
-              <span>{showPassword ? <FaEyeSlash /> : <FaEye />}</span>
-            </div>
+
+            <CustomEyeButton showData={showPassword} setShowData={setShowPassword} textColor={`text-black`}/>
           </div>
 
           {/* Sign In Button */}
