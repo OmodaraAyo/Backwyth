@@ -19,5 +19,5 @@ export const navBarItems = [
   { page: "About Us", path: "/about-us" },
   { page: "FAQs", path: "/faqs" },
   { page: "Doc", path: "/documentation" },
-  { page: "Dashboard", path: "/dashboard/profile" },
+  { page: "Dashboard", path: "/dashboard" },
 ];
