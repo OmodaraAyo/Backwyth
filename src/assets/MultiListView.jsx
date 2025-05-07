@@ -21,3 +21,12 @@ export const navBarItems = [
   { page: "Doc", path: "/documentation" },
   { page: "Dashboard", path: "/dashboard" },
 ];
+
+export const dashboardChildren = [
+  { page: "Profile", path: "/dashboard/profile" },
+  { page: "Add New Menu", path: "/dashboard/add-menu" },
+  { page: "Feedback", path: "/dashboard/feedback" },
+  { page: "Notifications", path: "/dashboard/notifications" },
+  { page: "Support", path: "/dashboard/support" },
+  { page: "Settings", path: "/dashboard/settings" },
+];
