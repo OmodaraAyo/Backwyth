@@ -31,10 +31,10 @@ const Profile = () => {
 
   return (
     <section id="profile">
-      <div className="flex-1 px-3 sm:px-8 py-3 relative overflow-hidden">
+      <div className="flex-1 px-2 sm:px-8 py-3 relative overflow-hidden">
         <h1 className="text-3xl font-bold mb-8">Company Information</h1>
 
-        <div className="md:max-w-2xl bg-[#07020D]/90 backdrop-blur-sm p-6 rounded-xl border border-[#6315db]/30">
+        <div className="md:max-w-2xl bg-[#07020D]/90 backdrop-blur-sm py-6 px-4 rounded-xl border border-[#6315db]/30">
           <div className="space-y-6">
             {userDetails.map((info, index) => (
               <div key={index}>

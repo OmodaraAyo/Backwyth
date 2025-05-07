@@ -56,10 +56,10 @@ const Header = () => {
       <div className="container mx-auto h-full flex justify-between items-center px-4 py-3">
         <div className="flex items-center gap-4">
           <button onClick={toggleMenu} className="md:hidden focus:outline-none">
-            <Menu className="w-8 h-8 text-white" cursor="pointer"/>
+            <Menu className="w-10 h-10 text-white" cursor="pointer"/>
           </button>
           <Link to="/">
-            <img src={images.logo} alt="logo" className="w-[3rem] md:w-[5rem]" />
+            <img src={images.logo} alt="logo" className="w-[4rem] md:w-[5rem]" />
           </Link>
         </div>
 
