@@ -103,7 +103,7 @@ const Header = () => {
               animate={{ opacity: 0.5 }}
               exit={{ opacity: 0 }}
               transition={{ duration: 0.3 }}
-              className="fixed inset-0 bg-black z-10 h-screen"
+              className="fixed inset-0 bg-black z-10 h-[100vh]"
             />
 
             {/* Sidebar */}
@@ -112,7 +112,7 @@ const Header = () => {
               animate={{ x: 0 }}
               exit={{ x: '-100%' }}
               transition={{ type: 'tween', duration: 0.3 }}
-              className="fixed top-0 left-0 h-screen w-4/5 bg-[#07020D] z-[100] shadow-lg p-6 pt-20 flex flex-col overflow-y-auto"
+              className="fixed top-0 left-0 h-[100vh] w-4/5 bg-[#07020D] z-[100] shadow-lg p-6 pt-20 flex flex-col overflow-y-auto"
             >
               <button onClick={toggleMenu} className="absolute top-7 right-9 text-white">
                 <X className="w-6 h-6 hover:text-gray-300 cursor-pointer" />
