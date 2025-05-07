@@ -50,6 +50,7 @@
 
 .scrollbar-custom::-webkit-scrollbar-track {
   background: #dcdada; 
+  border-radius: 4px;
 }
 
 .scrollbar-custom::-webkit-scrollbar-thumb {
@@ -65,6 +66,7 @@
 .scrollbar-custom::-webkit-scrollbar-thumb:active {
   cursor: grabbing;
 }
+
 
 
 html,
