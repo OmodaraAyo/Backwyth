@@ -14,6 +14,7 @@ import Feedback from "../pages/Feedback";
 import Notification from "../pages/Notification";
 import Support from "../pages/Support";
 import Settings from "../pages/Settings";
+import UpdateDetails from "../pages/UpdateDetails";
 
 const ROUTES = createBrowserRouter([
     {
@@ -26,7 +27,8 @@ const ROUTES = createBrowserRouter([
             },
             {
                 path: "pricing", 
-                element: <Pricing/> },
+                element: <Pricing/> 
+            },
             { path: "about-us", element: <AboutUs/> 
 
             },
@@ -54,6 +56,12 @@ const ROUTES = createBrowserRouter([
                     {
                         path: "profile",
                         element: <Profile/>,
+                        children: [
+                            {
+                                path: "edit",
+                                element: <UpdateDetails/>
+                            }
+                        ]
                     },
                     {
                         path: "add-menu",

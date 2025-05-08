@@ -3,6 +3,7 @@ import { SignUpApi } from "../api/SignUpApi.jsx";
 import { ButtonLoader } from "../Utils/Utils.jsx";
 import { toast } from "react-toastify";
 import { categories } from "../assets/MultiListView.jsx";
+import { Trash2 } from "lucide-react";
 
 const SignUp = ({ setShowLogin }) => {
   const [phoneNumbers, setPhoneNumbers] = useState([""]);
@@ -92,7 +93,7 @@ const SignUp = ({ setShowLogin }) => {
           {/* Phone Numbers */}
           <div className="space-y-4">
             {phoneNumbers.map((phone, index) => (
-              <div key={index} className="flex items-center gap-2">
+              <div key={index} className="relative flex items-center gap-2">
                 <div className="relative rounded-lg bg-white border border-gray-300 focus-within:border-[#6315db] focus-within:ring-2 focus-within:ring-[#6315db]/30 focus-within:shadow-md transition-all duration-300 flex-grow">
                   <input
                     type="text"
@@ -108,9 +109,9 @@ const SignUp = ({ setShowLogin }) => {
                   <button
                     type="button"
                     onClick={() => removePhoneField(index)}
-                    className="text-red-500 text-xl font-bold hover:text-red-700"
+                    className="cursor-pointer absolute top-1/2 right-1 -translate-x-1/2 -translate-y-1/2 transform text-red-500 text-xl font-bold hover:text-red-700"
                   >
-                    &minus;
+                    <Trash2 size={18}/>
                   </button>
                 )}
               </div>

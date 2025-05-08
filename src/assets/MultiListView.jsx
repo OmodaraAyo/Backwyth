@@ -23,10 +23,10 @@ export const navBarItems = [
 ];
 
 export const dashboardChildren = [
-  { page: "Profile", path: "/dashboard/profile" },
-  { page: "Add New Menu", path: "/dashboard/add-menu" },
-  { page: "Feedback", path: "/dashboard/feedback" },
-  { page: "Notifications", path: "/dashboard/notifications" },
-  { page: "Support", path: "/dashboard/support" },
-  { page: "Settings", path: "/dashboard/settings" },
+  { page: "Profile", path: "/profile" },
+  { page: "Add New Menu", path: "/add-menu" },
+  { page: "Feedback", path: "/feedback" },
+  { page: "Notifications", path: "/notifications" },
+  { page: "Support", path: "/support" },
+  { page: "Settings", path: "/settings" },
 ];
