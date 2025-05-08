@@ -119,9 +119,9 @@ const Header = () => {
               </button>
 
               <nav className="flex flex-col gap-4 font-semibold text-lg">
-                {filteredNavItems.map((item, idx) => (
+                {filteredNavItems.map((item, index) => (
                   item.page === "Dashboard" && user?.loggedIn ? (
-                    <div key={idx}>
+                    <div key={index}>
                       <div
                         onClick={toggleDashboardDropdown}
                         className="flex items-center justify-between cursor-pointer text-white bg-[#6315db] hover:bg-[#4f10a6] p-2 rounded-lg"
@@ -146,19 +146,19 @@ const Header = () => {
                             transition={{ staggerChildren: 0.07, delayChildren: 0.1 }}
                             className="ml-4 mt-2 flex flex-col gap-2 max-h-40 overflow-y-auto scrollbar-custom rounded-md"
                           >
-                            {dashboardChildren.map((child, i) => (
+                            {dashboardChildren.map((child, index) => (
                               <motion.div
-                                key={i}
+                                key={index}
                                 initial={{ opacity: 0, x: -20 }}
                                 animate={{ opacity: 1, x: 0 }}
                                 exit={{ opacity: 0, x: -20 }}
                                 transition={{ duration: 0.3 }}
                               >
                                 <NavLink
-                                  to={child.path}
+                                  to={"/dashboard"+child.path}
                                   onClick={toggleMenu}
                                   className={({ isActive }) => clsx(
-                                    "text-sm h-2",
+                                    "text-sm inline-block w-full h-full",
                                     isActive ? "text-white" : "text-gray-300 hover:text-[#6315db]"
                                   )}
                                 >
@@ -173,7 +173,7 @@ const Header = () => {
                   ) : (
                     <NavLink
                       to={item.path}
-                      key={idx}
+                      key={index}
                       onClick={toggleMenu}
                       className={({ isActive }) => clsx("transition-all duration-200 p-2 rounded-lg", isActive ? "text-white" : "text-gray-300 hover:text-white hover:bg-[#6315db]/20")}
                     >
