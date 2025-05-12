@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import { useSelector } from "react-redux";
 import { formatLabelName } from "../helper/Formatter";
 import { Trash2 } from "lucide-react";
@@ -6,11 +6,14 @@ import { UpdateDetailsApi } from "../api/UpdateDetailsApi";
 import { toast } from "react-toastify";
 import { ButtonLoader } from "../Utils/Utils";
 import { categories } from "../assets/MultiListView";
+import { useNavigate } from "react-router";
+import Context from "../context";
 
 const UpdateDetails = () => {
   const user = useSelector((state) => state?.user.user);
   const [phoneNumbers, setPhoneNumbers] = useState([""]);
   const [isLoading, setIsLoading] = useState(false);
+  const { fetchCurrentUserDetails } = useContext(Context)
   const [formValues, setFormValues] = useState({
     companyPhone: [""],
     businessRegistrationNumber: "",
@@ -19,6 +22,7 @@ const UpdateDetails = () => {
     baseUrl: "",
   });
   const [initialFormValues, setInitialFormValues] = useState(null);
+  const navigate = useNavigate();
 
   useEffect(() => {
     if (user) {
@@ -85,6 +89,8 @@ const UpdateDetails = () => {
       const response = await UpdateDetailsApi(payload);
       if (response?.status === 200) {
         toast.success(`${response?.data?.data?.message}`);
+        fetchCurrentUserDetails();
+        navigate(-1);
         setInitialFormValues(payload);
       }
     } catch (error) {

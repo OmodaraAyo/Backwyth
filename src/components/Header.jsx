@@ -80,7 +80,7 @@ const Header = () => {
 
         <div className="block">
           {user?.loggedIn ? (
-            <LogOut cursor="pointer" className="text-red-600 hover:text-red-700 w-7 h-7" />
+            <div title="logout"><LogOut cursor="pointer" className="text-red-600 hover:text-red-700 w-7 h-7"/></div>
           ) : (
             <Link
               to="/auth"

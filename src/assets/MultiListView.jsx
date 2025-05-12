@@ -24,7 +24,7 @@ export const navBarItems = [
 
 export const dashboardChildren = [
   { page: "Profile", path: "/profile" },
-  { page: "Add New Menu", path: "/add-menu" },
+  { page: "Menus", path: "/menus" },
   { page: "Feedback", path: "/feedback" },
   { page: "Notifications", path: "/notifications" },
   { page: "Support", path: "/support" },

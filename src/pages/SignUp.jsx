@@ -52,7 +52,6 @@ const SignUp = ({ setShowLogin }) => {
     try {
       setIsLoading(true);
       const response = await SignUpApi(payload);
-      // console.log("api response: ", response);
 
       if (response?.status === 200) {
         setIsLoading(false);
@@ -172,9 +171,7 @@ const SignUp = ({ setShowLogin }) => {
             type="submit"
             disabled={isloading}
             className={`w-full px-4 py-3 text-base rounded-lg text-white font-medium transition duration-300 ease-in-out flex items-center justify-center gap-2 
-            ${isloading ? 'bg-[#6315db]/70 cursor-not-allowed' : 'bg-[#6315db] hover:bg-[#5111b3] cursor-pointer'} 
-              disabled:opacity-60`}
-            >
+            ${isloading ? 'bg-[#6315db]/70 cursor-not-allowed' : 'bg-[#6315db] hover:bg-[#5111b3] cursor-pointer'} disabled:opacity-60`}>
             {isloading ? <ButtonLoader /> : "Sign Up"}
           </button>
         </form>
