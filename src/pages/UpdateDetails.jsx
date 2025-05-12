@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useSelector } from "react-redux";
 import { formatLabelName } from "../helper/Formatter";
 import { Trash2 } from "lucide-react";
@@ -11,13 +11,88 @@ const UpdateDetails = () => {
   const user = useSelector((state) => state?.user.user);
   const [phoneNumbers, setPhoneNumbers] = useState([""]);
   const [isLoading, setIsLoading] = useState(false);
-  const [data, setData] = useState({
+  const [formValues, setFormValues] = useState({
     companyPhone: [""],
     businessRegistrationNumber: "",
     category: "",
     companyApiKey: "",
     baseUrl: "",
   });
+  const [initialFormValues, setInitialFormValues] = useState(null);
+
+  useEffect(() => {
+    if (user) {
+      const phoneList = user?.companyPhone?.length ? user.companyPhone : [""];
+      const populated = {
+        companyPhone: phoneList,
+        businessRegistrationNumber: user?.businessRegistrationNumber || "",
+        category: user?.category || "",
+        companyApiKey: user?.companyApiKey || "",
+        baseUrl: user?.baseUrl || "",
+      };
+      setPhoneNumbers(phoneList);
+      setFormValues(populated);
+      setInitialFormValues(populated);
+    }
+  }, [user]);
+
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setFormValues((prev) => ({
+      ...prev,
+      [name]: value,
+    }));
+  };
+
+  const updatePhoneNumber = (index, value) => {
+    const updatedPhones = [...phoneNumbers];
+    updatedPhones[index] = value;
+    setPhoneNumbers(updatedPhones);
+  };
+
+  const addPhoneField = () => {
+    setPhoneNumbers([...phoneNumbers, ""]);
+  };
+
+  const removePhoneField = (index) => {
+    const updatedPhones = phoneNumbers.filter((_, i) => i !== index);
+    setPhoneNumbers(updatedPhones);
+  };
+
+  const isFormUnchanged = () => {
+    if (!initialFormValues) return true;
+    const currentValues = {
+      ...formValues,
+      companyPhone: phoneNumbers,
+    };
+
+    const isEmptyPhonePresent = phoneNumbers.some((phone) => phone.trim() === "");
+
+    return (
+      JSON.stringify(currentValues) === JSON.stringify(initialFormValues) ||
+      isEmptyPhonePresent
+    );
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    const payload = {
+      ...formValues,
+      companyPhone: phoneNumbers,
+    };
+    try {
+      setIsLoading(true);
+      const response = await UpdateDetailsApi(payload);
+      if (response?.status === 200) {
+        toast.success(`${response?.data?.data?.message}`);
+        setInitialFormValues(payload);
+      }
+    } catch (error) {
+      toast.error("Error saving changes: " + error?.message);
+    } finally {
+      setIsLoading(false);
+    }
+  };
 
   const formData = [
     { label: "Category", name: "category" },
@@ -31,53 +106,6 @@ const UpdateDetails = () => {
       name: "baseUrl",
     },
   ];
-
-  const addPhoneField = () => {
-    setPhoneNumbers([...phoneNumbers, ""]);
-  };
-
-  const removePhoneField = (index) => {
-    const updatedPhones = phoneNumbers.filter((_, i) => i !== index);
-    setPhoneNumbers(updatedPhones);
-  };
-
-  const updatePhoneNumber = (index, value) => {
-    const updatedPhones = [...phoneNumbers];
-    updatedPhones[index] = value;
-    setPhoneNumbers(updatedPhones);
-  };
-
-  const handleChange = (e) => {
-    const { name, value } = e.target;
-
-    setData((prev) => ({
-      ...prev,
-      [name]: value,
-    }));
-  };
-
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-
-    const payload = {
-      ...data,
-      companyPhone: phoneNumbers,
-    };
-    console.log("from payload request:", payload)
-
-    try {
-      setIsLoading(true);
-      const response = await UpdateDetailsApi(payload);
-      console.log("from sent request:", response)
-      if (response?.status === 200) {
-        toast.success(`${response?.data?.data?.message}`);
-      }
-    } catch (error) {
-      toast.error("Error saving changes: " + error?.message);
-    } finally {
-      setIsLoading(false);
-    }
-  };
 
   return (
     <div>
@@ -123,14 +151,14 @@ const UpdateDetails = () => {
         {/* Other Form Fields */}
         {formData.map((field, index) => (
           <div key={index}>
-            <label className="block text-sm font-medium mb-2">
+            <label htmlFor={field.name} className="block text-sm font-medium mb-2">
               {field.label}
             </label>
             {field.name === "category" ? (
               <select
                 name="category"
                 onChange={handleChange}
-                value={data.category}
+                value={formValues.category}
                 required
                 className="w-full h-10 bg-[#07020D] border border-[#6315db]/30 rounded-lg px-4 py-2 focus:ring-2 focus:ring-[#6315db] outline-none"
               >
@@ -147,7 +175,8 @@ const UpdateDetails = () => {
               <input
                 type="text"
                 name={field.name}
-                value={data[field.name]}
+                id={field.name}
+                value={formValues[field.name]}
                 onChange={handleChange}
                 className="w-full h-10 bg-[#07020D] border border-[#6315db]/30 rounded-lg px-4 py-2 focus:ring-2 focus:ring-[#6315db] outline-none"
                 required
@@ -159,9 +188,9 @@ const UpdateDetails = () => {
         {/* Submit Button */}
         <button
           type="submit"
-          disabled={isLoading}
+          disabled={isLoading || isFormUnchanged()}
           className={`flex justify-center w-full text-white font-medium py-2 px-4 rounded-lg transition-colors duration-300 ease-in-out items-center gap-2 
-            ${isLoading ? 'bg-[#6315db]/70 cursor-not-allowed' : 'bg-[#6315db] hover:bg-[#5111b3] cursor-pointer'} 
+            ${(isLoading || isFormUnchanged()) ? 'bg-[#6315db]/70 cursor-not-allowed' : 'bg-[#6315db] hover:bg-[#5111b3] cursor-pointer'} 
             disabled:opacity-60`}
         >
           {isLoading ? <ButtonLoader /> : "Save Changes"}

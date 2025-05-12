@@ -26,8 +26,16 @@ const Profile = () => {
     { label: "Phone Number", data: user?.companyPhone },
     { label: "Category", data: user?.category },
     { label: "Business Reg/No", data: user?.businessRegistrationNumber },
-    { label: `${formatLabelName(user?.companyName)} API access Key`, data: user?.companyApiKey, sensitive: true, },
-    { label: `${formatLabelName(user?.companyName)} API base URL`, data: user?.baseUrl, sensitive: true, },
+    {
+      label: `${formatLabelName(user?.companyName)} API access Key`,
+      data: user?.companyApiKey,
+      sensitive: true,
+    },
+    {
+      label: `${formatLabelName(user?.companyName)} API base URL`,
+      data: user?.baseUrl,
+      sensitive: true,
+    },
     { label: "Created At", data: moment(user?.createAt).format("LLL") },
   ];
 
@@ -42,7 +50,6 @@ const Profile = () => {
       <div className="flex-1 px-2 sm:px-8 py-3 relative overflow-hidden">
         <h1 className="text-3xl font-bold mb-8">Company Information</h1>
 
-        {/* BACK BUTTON FOR EDIT MODE */}
         {isEditing && (
           <div className="md:max-w-2xl mb-4">
             <Link
@@ -54,7 +61,6 @@ const Profile = () => {
           </div>
         )}
 
-        {/* PROFILE VIEW MODE */}
         {!isEditing && (
           <div className="md:max-w-2xl bg-[#07020D]/90 backdrop-blur-sm py-6 px-4 rounded-xl border border-[#6315db]/30">
             <div className="space-y-6">
@@ -63,7 +69,7 @@ const Profile = () => {
                   <label className="block text-sm font-medium mb-2">
                     {info.label}
                   </label>
-                  <div className="w-full h-10 bg-[#07020D] border border-[#6315db]/30 rounded-lg px-4 py-2 focus:ring-2 focus:ring-[#6315db] outline-none">
+                  <div className="w-full min-h-10 bg-[#07020D] border border-[#6315db]/30 rounded-lg px-4 py-2 focus:ring-2 focus:ring-[#6315db] outline-none">
                     {info.data === null ? (
                       <span className="text-gray-500 italic">Not provided</span>
                     ) : info.sensitive ? (
@@ -79,6 +85,14 @@ const Profile = () => {
                           textColor="text-white"
                         />
                       </div>
+                    ) : Array.isArray(info.data) ? (
+                      <ul className="flex flex-wrap gap-2">
+                        {info.data.map((num, index) => (
+                          <li key={index} className="text-sm px-3 py-1 rounded-full border border-[#6315db]/30 bg-[#1a0b2d] text-white hover:bg-[#240c3f] transition-colors">
+                             {num}
+                          </li>
+                        ))}
+                      </ul>
                     ) : (
                       <span>{info.data}</span>
                     )}
@@ -96,7 +110,6 @@ const Profile = () => {
           </div>
         )}
 
-        {/* EDIT MODE: Render form from <Outlet /> */}
         {isEditing && (
           <div className="md:max-w-2xl bg-[#07020D]/90 backdrop-blur-sm py-6 px-4 rounded-xl border border-[#6315db]/30 mt-6">
             <Outlet />
