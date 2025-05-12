@@ -36,7 +36,7 @@ const Profile = () => {
       data: user?.baseUrl,
       sensitive: true,
     },
-    { label: "Created At", data: moment(user?.createAt).format("LLL") },
+    { label: "Created At", data: moment(user?.createAt, "MM/DD/YYYY HH:mm:ss").format("LLL") },
   ];
 
   useEffect(() => {

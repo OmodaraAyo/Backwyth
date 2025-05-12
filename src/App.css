@@ -78,3 +78,14 @@ body {
 #authentication {
   height: 100dvh; /* modern units for dynamic viewport */
 }
+
+
+.menuTable{
+  @apply bg-transparent text-white text-left
+}
+.menuTable th{
+  @apply border border-[#6315db]/30 text-base font-medium
+}
+.menuTable td{
+  @apply border border-[#6315db]/30 text-base font-normal
+}

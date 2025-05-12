@@ -5,45 +5,29 @@ import { Outlet, useLocation, useNavigate } from "react-router";
 import Footer from "./components/Footer";
 import { Slide, ToastContainer } from "react-toastify";
 import { useDispatch } from "react-redux";
-import { CurrentUserApi } from "./api/CurrentUserApi";
 import Context from "./context";
-import { setUserDetails } from "./store/userSlice";
 import { axiosInstance } from "./api/MyConfig";
 import AuthPage from "./pages/AuthPage";
+import { fetchUserDetails } from "./Utils/FetchCurrentUserDetails";
 
 function App() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const location = useLocation();
   const backgroundLocation = location.state?.backgroundLocation;
-  // console.log("location:", location);
-  // console.log("backgroundLocation:", backgroundLocation);
 
-  const fetchCurrentUserDetails = async () => {
-    try {
-      const response = await CurrentUserApi();
-      console.log("Current User Details: ", response);
-      if(response?.status === 200) {
-        dispatch(setUserDetails(response?.data?.data));
-      }
-    } catch (error) {
-      localStorage.removeItem('token');
-      axiosInstance.defaults.headers.common['Authorization'] = null;
-      navigate('/auth');
-      console.error("Error fetching current user details: ", error);
+  const fetchCurrentUserDetails = () => {
+    const token = localStorage.getItem("token");
+    if (token) {
+      axiosInstance.defaults.headers.common["Authorization"] = `Bearer ${token}`;
+      fetchUserDetails(dispatch, navigate, "/auth");
+    } else {
+      navigate("/");
     }
   };
 
   useEffect(() => {
-    
-    const token = localStorage.getItem('token')
-    if(token) {
-      axiosInstance.defaults.headers.common['Authorization'] = `Bearer ${token}`
-      fetchCurrentUserDetails();
-    }else{
-      navigate('/');
-    }
-
+    fetchCurrentUserDetails();
   }, []);
 
   return (
@@ -71,8 +55,8 @@ function App() {
         />
         <Header />
         <main className="min-h-[calc(100vh-120px)]">
-          <Outlet location={backgroundLocation || location}/>
-          {backgroundLocation && <AuthPage/>}
+          <Outlet location={backgroundLocation || location} />
+          {backgroundLocation && <AuthPage />}
         </main>
         <Footer />
       </Context.Provider>

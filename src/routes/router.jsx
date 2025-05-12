@@ -9,83 +9,92 @@ import LandingPage from "../pages/LandingPage";
 import Dashboard from "../pages/Dashboard";
 import AuthPage from "../pages/AuthPage";
 import Profile from "../pages/Profile";
-import NewMenu from "../pages/NewMenu";
+import Menu from "../pages/Menu/Menu";
 import Feedback from "../pages/Feedback";
 import Notification from "../pages/Notification";
 import Support from "../pages/Support";
 import Settings from "../pages/Settings";
 import UpdateDetails from "../pages/UpdateDetails";
+import AddNewMenu from "../pages/Menu/AddNewMenu";
+import UpdateMenu from "../pages/Menu/UpdateMenu";
 
 const ROUTES = createBrowserRouter([
-    {
-        path: "/",
-        element: <App />,
+  {
+    path: "/",
+    element: <App />,
+    children: [
+      {
+        path: "",
+        element: <LandingPage />,
+      },
+      {
+        path: "pricing",
+        element: <Pricing />,
+      },
+      { path: "about-us", element: <AboutUs /> },
+      {
+        path: "faqs",
+        element: <FAQs />,
+      },
+      {
+        path: "documentation",
+        element: <Documentation />,
+      },
+      {
+        path: "auth",
+        element: <AuthPage />,
+      },
+      {
+        path: "dashboard",
+        element: <Dashboard />,
         children: [
-            {
-                path: "", 
-                element: <LandingPage/> 
-            },
-            {
-                path: "pricing", 
-                element: <Pricing/> 
-            },
-            { path: "about-us", element: <AboutUs/> 
-
-            },
-            {
-                path: "faqs", 
-                element: <FAQs/> 
-            },
-            {
-                path: "documentation",
-                element: <Documentation/> 
-            },
-            {
-                path: "auth", 
-                element: <AuthPage/> 
-            },
-            {
-                path: "dashboard",
-                element: <Dashboard/>,
-                children: [
-                    {
-                        path: "",
-                        element: <Navigate to="profile" replace />
-                    }
-                    ,
-                    {
-                        path: "profile",
-                        element: <Profile/>,
-                        children: [
-                            {
-                                path: "edit",
-                                element: <UpdateDetails/>
-                            }
-                        ]
-                    },
-                    {
-                        path: "add-menu",
-                        element: <NewMenu/>,
-                    },
-                    {
-                        path: "feedback",
-                        element: <Feedback/>,
-                    },
-                    {
-                        path: "notifications",
-                        element: <Notification/>,
-                    },
-                    {
-                        path: "support",
-                        element: <Support/>,
-                    },
-                    {
-                        path: "settings",
-                        element: <Settings/>,
-                    },
-                ]
-            },
-        ]
-    },
-])
+          {
+            path: "",
+            element: <Navigate to="profile" replace />,
+          },
+          {
+            path: "profile",
+            element: <Profile />,
+            children: [
+              {
+                path: "edit",
+                element: <UpdateDetails />,
+              },
+            ],
+          },
+          {
+            path: "menus",
+            element: <Menu />,
+            children: [
+              {
+                path: "add",
+                element: <AddNewMenu />,
+              },
+              {
+                path: ":menuId/edit",
+                element: <UpdateMenu />,
+              },
+            ],
+          },
+          {
+            path: "feedback",
+            element: <Feedback />,
+          },
+          {
+            path: "notifications",
+            element: <Notification />,
+          },
+          {
+            path: "support",
+            element: <Support />,
+          },
+          {
+            path: "settings",
+            element: <Settings />,
+          },
+        ],
+      },
+    ],
+  },
+]);
 export default ROUTES;
