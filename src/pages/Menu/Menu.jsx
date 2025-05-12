@@ -6,7 +6,7 @@ import { formatLabelName } from "../../helper/Formatter";
 
 const Menu = () => {
   const user = useSelector((state) => state?.user.user);
-  console.log("from menu", user);
+  // console.log("from menu", user);
   const createNewMenu = "/dashboard/menus/add";
 
   return (
