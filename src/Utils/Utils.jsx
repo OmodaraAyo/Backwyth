@@ -11,3 +11,16 @@ export const ButtonLoader = ()=> {
         </div>
     )
 }
+
+export const PageLoader = () => {
+    return(
+        <div className="flex justify-center h-full">
+            <ClipLoader
+                color="#fff"
+                size={24}
+                aria-label="Loading Spinner"
+                data-testid="loader"
+            />  
+        </div>
+    )
+}
