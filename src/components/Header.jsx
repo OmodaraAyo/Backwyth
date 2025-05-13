@@ -136,7 +136,7 @@ const Header = () => {
                 <X className="w-6 h-6 hover:text-gray-300 cursor-pointer" />
               </button>
 
-              <nav className="flex flex-col h-[100dvh] relative gap-4 font-semibold text-lg">
+              <nav className="flex flex-col h-[100dvh] gap-4 font-semibold text-lg">
                 {filteredNavItems.map((item, index) =>
                   item.page === "Dashboard" && user?.loggedIn ? (
                     <div key={index}>
@@ -213,15 +213,15 @@ const Header = () => {
                     </NavLink>
                   )
                 )}
+              </nav>
 
-                <div className="absolute bottom-0 w-full py-2 text-center text-[0.65rem] text-gray-500 border-t border-gray-700">
+              <div className="absolute bottom-0 left-0 right-0 w-full py-2 text-center text-[0.65rem] text-gray-500 border-t border-gray-700">
                   <p>
                     © 2025{" "}
                     <span className="font-semibold text-white">Backwyth™</span>
                   </p>
                   <p>All rights reserved. Bringing everyone back with us.</p>
                 </div>
-              </nav>
             </motion.div>
           </>
         )}
