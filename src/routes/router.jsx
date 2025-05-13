@@ -17,6 +17,7 @@ import Settings from "../pages/Settings";
 import UpdateDetails from "../pages/UpdateDetails";
 import AddNewMenu from "../pages/Menu/AddNewMenu";
 import UpdateMenu from "../pages/Menu/UpdateMenu";
+import ProtectedRoute from "../components/ProtectedRoute";
 
 const ROUTES = createBrowserRouter([
   {
@@ -46,7 +47,11 @@ const ROUTES = createBrowserRouter([
       },
       {
         path: "dashboard",
-        element: <Dashboard />,
+        element: (
+          <ProtectedRoute>
+            <Dashboard />
+          </ProtectedRoute>
+        ),
         children: [
           {
             path: "",

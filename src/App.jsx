@@ -10,6 +10,7 @@ import Context from "./context";
 import { setUserDetails } from "./store/userSlice";
 import { axiosInstance } from "./api/MyConfig";
 import AuthPage from "./pages/AuthPage";
+import { clearAuthToken, getAuthToken } from "./Utils/Token";
 
 function App() {
   const dispatch = useDispatch();
@@ -25,7 +26,7 @@ function App() {
         dispatch(setUserDetails(response?.data?.data));
       }
     } catch (error) {
-      localStorage.removeItem('token');
+      clearAuthToken();
       axiosInstance.defaults.headers.common['Authorization'] = null;
       navigate('/auth');
       console.error("Error fetching current user details: ", error);
@@ -34,7 +35,7 @@ function App() {
 
   useEffect(() => {
     
-    const token = localStorage.getItem('token')
+    const token = getAuthToken();
     if(token) {
       axiosInstance.defaults.headers.common['Authorization'] = `Bearer ${token}`
       fetchCurrentUserDetails();
