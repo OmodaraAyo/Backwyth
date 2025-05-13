@@ -136,7 +136,7 @@ const Header = () => {
                 <X className="w-6 h-6 hover:text-gray-300 cursor-pointer" />
               </button>
 
-              <nav className="flex flex-col h-full relative gap-4 font-semibold text-lg">
+              <nav className="flex flex-col h-full border relative gap-4 font-semibold text-lg">
                 {filteredNavItems.map((item, index) =>
                   item.page === "Dashboard" && user?.loggedIn ? (
                     <div key={index}>
