@@ -34,8 +34,8 @@ const Login = ({ setShowLogin }) => {
       setIsLoading(true);
       const response = await SignInApi(payload);
       if (response?.status === 200) {
-        setIsLoading(false);
         await fetchCurrentUserDetails();
+        setIsLoading(false);
         toast.success(`${response?.data?.data?.response}`);
         navigate("/dashboard/profile");
         // setShowLogin(false);
@@ -106,7 +106,7 @@ const Login = ({ setShowLogin }) => {
               {otherSignInOptions.map((option, index) => (
                 <button
                   key={index}
-                  className="flex items-center justify-center w-22 md:w-32 h-10 border border-gray-300 rounded-md bg-white hover:bg-gray-100 transition-all duration-200 ease-in-out shadow-sm"
+                  className="flex items-center justify-center w-22 md:w-32 h-11 border border-gray-300 rounded-md bg-white hover:bg-gray-100 transition-all duration-200 ease-in-out shadow-sm"
                 >
                   <img
                     src={option.icon}
