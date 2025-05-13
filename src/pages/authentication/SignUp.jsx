@@ -1,8 +1,8 @@
 import React, { useState } from "react";
-import { SignUpApi } from "../api/SignUpApi.jsx";
-import { ButtonLoader } from "../Utils/Utils.jsx";
+import { SignUpApi } from "../../api/SignUpApi.jsx";
+import { ButtonLoader } from "../../Utils/Utils.jsx";
 import { toast } from "react-toastify";
-import { categories } from "../assets/MultiListView.jsx";
+import { categories } from "../../assets/MultiListView.jsx";
 import { Trash2 } from "lucide-react";
 
 const SignUp = ({ setShowLogin }) => {
@@ -59,9 +59,9 @@ const SignUp = ({ setShowLogin }) => {
         setShowLogin(true);
       }
     } catch (error) {
-        setIsLoading(false)
-        // console.log("Error: ", error);
-        toast.error("Error creating account: "+error?.message)
+      setIsLoading(false);
+      // console.log("Error: ", error);
+      toast.error("Error creating account: " + error?.message);
     }
   };
 
@@ -110,7 +110,7 @@ const SignUp = ({ setShowLogin }) => {
                     onClick={() => removePhoneField(index)}
                     className="cursor-pointer absolute top-1/2 right-1 -translate-x-1/2 -translate-y-1/2 transform text-red-500 text-xl font-bold hover:text-red-700"
                   >
-                    <Trash2 size={18}/>
+                    <Trash2 size={18} />
                   </button>
                 )}
               </div>
@@ -159,19 +159,26 @@ const SignUp = ({ setShowLogin }) => {
             className="w-full px-4 py-3 text-sm md:text-base text-gray-900 border border-gray-300 rounded-lg bg-white outline-none transition-all duration-200 ease-in-out 
                       focus:border-[#6315db] focus:ring-2 focus:ring-[#6315db]/30 focus:shadow-md placeholder:text-gray-400"
           >
-            <option value="" disabled>Select Business Category</option>
+            <option value="" disabled>
+              Select Business Category
+            </option>
             {categories.map(({ value, label }) => (
-            <option key={value} value={value}>
-            {label}
+              <option key={value} value={value}>
+                {label}
               </option>
-          ))}
+            ))}
           </select>
 
           <button
             type="submit"
             disabled={isloading}
             className={`w-full px-4 py-3 text-base rounded-lg text-white font-medium transition duration-300 ease-in-out flex items-center justify-center gap-2 
-            ${isloading ? 'bg-[#6315db]/70 cursor-not-allowed' : 'bg-[#6315db] hover:bg-[#5111b3] cursor-pointer'} disabled:opacity-60`}>
+            ${
+              isloading
+                ? "bg-[#6315db]/70 cursor-not-allowed"
+                : "bg-[#6315db] hover:bg-[#5111b3] cursor-pointer"
+            } disabled:opacity-60`}
+          >
             {isloading ? <ButtonLoader /> : "Sign Up"}
           </button>
         </form>

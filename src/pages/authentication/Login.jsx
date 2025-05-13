@@ -1,12 +1,12 @@
 import React, { useContext, useState } from "react";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
-import { otherSignInOptions } from "../assets/MultiListView";
-import { SignInApi } from "../api/SignInApi";
-import { ButtonLoader } from "../Utils/Utils";
+import { otherSignInOptions } from "../../assets/MultiListView";
+import { SignInApi } from "../../api/SignInApi";
+import { ButtonLoader } from "../../Utils/Utils";
 import { toast } from "react-toastify";
-import Context from "../context";
+import Context from "../../context";
 import { useNavigate } from "react-router";
-import CustomEyeButton from "../reusables/CustomEyeButton";
+import CustomEyeButton from "../../reusables/CustomEyeButton";
 
 const Login = ({ setShowLogin }) => {
   const [data, setData] = useState({
@@ -42,7 +42,6 @@ const Login = ({ setShowLogin }) => {
       }
     } catch (error) {
       setIsLoading(false);
-      console.log("api error: ", error);
       toast.error(error?.message || "Something went wrong!");
     }
   };
@@ -82,7 +81,11 @@ const Login = ({ setShowLogin }) => {
               required
             />
 
-            <CustomEyeButton showData={showPassword} setShowData={setShowPassword} textColor={`text-black`}/>
+            <CustomEyeButton
+              showData={showPassword}
+              setShowData={setShowPassword}
+              textColor={`text-black`}
+            />
           </div>
 
           {/* Sign In Button */}
@@ -90,7 +93,11 @@ const Login = ({ setShowLogin }) => {
             type="submit"
             disabled={isloading}
             className={`w-full px-4 py-3 text-base rounded-lg text-white font-medium transition duration-300 ease-in-out flex items-center justify-center gap-2 
-              ${isloading ? 'bg-[#6315db]/70 cursor-not-allowed' : 'bg-[#6315db] hover:bg-[#5111b3] cursor-pointer'} 
+              ${
+                isloading
+                  ? "bg-[#6315db]/70 cursor-not-allowed"
+                  : "bg-[#6315db] hover:bg-[#5111b3] cursor-pointer"
+              } 
               disabled:opacity-60`}
           >
             {isloading ? <ButtonLoader /> : "Sign In"}

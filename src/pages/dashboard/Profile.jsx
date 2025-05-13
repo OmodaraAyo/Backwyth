@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from "react";
 import { useSelector } from "react-redux";
 import moment from "moment/moment";
-import { formatLabelName } from "../helper/Formatter";
-import CustomEyeButton from "../reusables/CustomEyeButton";
+import { formatLabelName } from "../../helper/Formatter";
+import CustomEyeButton from "../../reusables/CustomEyeButton";
 import { Link, Outlet, useLocation } from "react-router-dom";
 
 const Profile = () => {
@@ -36,7 +36,10 @@ const Profile = () => {
       data: user?.baseUrl,
       sensitive: true,
     },
-    { label: "Created At", data: moment(user?.createAt, "MM/DD/YYYY HH:mm:ss").format("LLL") },
+    {
+      label: "Created At",
+      data: moment(user?.createAt, "MM/DD/YYYY HH:mm:ss").format("LLL"),
+    },
   ];
 
   useEffect(() => {
@@ -88,8 +91,11 @@ const Profile = () => {
                     ) : Array.isArray(info.data) ? (
                       <ul className="flex flex-wrap gap-2">
                         {info.data.map((num, index) => (
-                          <li key={index} className="text-sm px-3 py-1 rounded-full border border-[#6315db]/30 bg-[#1a0b2d] text-white hover:bg-[#240c3f] transition-colors">
-                             {num}
+                          <li
+                            key={index}
+                            className="text-sm px-3 py-1 rounded-full border border-[#6315db]/30 bg-[#1a0b2d] text-white hover:bg-[#240c3f] transition-colors"
+                          >
+                            {num}
                           </li>
                         ))}
                       </ul>

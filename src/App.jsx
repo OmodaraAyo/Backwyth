@@ -9,7 +9,7 @@ import { CurrentUserApi } from "./api/CurrentUserApi";
 import Context from "./context";
 import { setUserDetails } from "./store/userSlice";
 import { axiosInstance } from "./api/MyConfig";
-import AuthPage from "./pages/AuthPage";
+import AuthPage from "./pages/authentication/AuthPage";
 import { clearAuthToken, getAuthToken } from "./Utils/Token";
 
 function App() {
@@ -22,27 +22,27 @@ function App() {
     try {
       const response = await CurrentUserApi();
       console.log("Current User Details: ", response);
-      if(response?.status === 200) {
+      if (response?.status === 200) {
         dispatch(setUserDetails(response?.data?.data));
       }
     } catch (error) {
       clearAuthToken();
-      axiosInstance.defaults.headers.common['Authorization'] = null;
-      navigate('/auth');
+      axiosInstance.defaults.headers.common["Authorization"] = null;
+      navigate("/auth");
       console.error("Error fetching current user details: ", error);
     }
   };
 
   useEffect(() => {
-    
     const token = getAuthToken();
-    if(token) {
-      axiosInstance.defaults.headers.common['Authorization'] = `Bearer ${token}`
+    if (token) {
+      axiosInstance.defaults.headers.common[
+        "Authorization"
+      ] = `Bearer ${token}`;
       fetchCurrentUserDetails();
-    }else{
-      navigate('/');
+    } else {
+      navigate("/");
     }
-
   }, []);
 
   return (
@@ -70,8 +70,8 @@ function App() {
         />
         <Header />
         <main className="min-h-[calc(100vh-120px)]">
-          <Outlet location={backgroundLocation || location}/>
-          {backgroundLocation && <AuthPage/>}
+          <Outlet location={backgroundLocation || location} />
+          {backgroundLocation && <AuthPage />}
         </main>
         <Footer />
       </Context.Provider>

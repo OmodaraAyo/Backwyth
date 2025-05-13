@@ -1,13 +1,13 @@
 import React, { useState, useEffect, useContext } from "react";
 import { useSelector } from "react-redux";
-import { formatLabelName } from "../helper/Formatter";
+import { formatLabelName } from "../../helper/Formatter";
 import { Trash2 } from "lucide-react";
-import { UpdateDetailsApi } from "../api/UpdateDetailsApi";
+import { UpdateDetailsApi } from "../../api/UpdateDetailsApi";
 import { toast } from "react-toastify";
-import { ButtonLoader } from "../Utils/Utils";
-import { categories } from "../assets/MultiListView";
+import { ButtonLoader } from "../../Utils/Utils";
+import { categories } from "../../assets/MultiListView";
 import { useNavigate } from "react-router";
-import Context from "../context";
+import Context from "../../context";
 
 const UpdateDetails = () => {
   const user = useSelector((state) => state?.user.user);

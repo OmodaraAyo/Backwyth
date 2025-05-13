@@ -1,23 +1,24 @@
 import { createBrowserRouter, Navigate } from "react-router-dom";
 import App from "../App";
-import Home from "../pages/Home";
-import Pricing from "../pages/Pricing";
-import AboutUs from "../pages/AboutUs";
-import FAQs from "../pages/FAQs";
-import Documentation from "../pages/Documentation";
-import LandingPage from "../pages/LandingPage";
-import Dashboard from "../pages/Dashboard";
-import AuthPage from "../pages/AuthPage";
-import Profile from "../pages/Profile";
-import Menu from "../pages/Menu/Menu";
-import Feedback from "../pages/Feedback";
-import Notification from "../pages/Notification";
-import Support from "../pages/Support";
-import Settings from "../pages/Settings";
-import UpdateDetails from "../pages/UpdateDetails";
+import LandingPage from "../pages/navbar/LandingPage";
+import Pricing from "../pages/navbar/Pricing";
+import AboutUs from "../pages/navbar/AboutUs";
+import FAQs from "../pages/navbar/FAQs";
+import Documentation from "../pages/navbar/Documentation";
+import AuthPage from "../pages/authentication/AuthPage";
+import ProtectedRoute from "../components/ProtectedRoute";
+import Dashboard from "../pages/navbar/Dashboard";
+import Profile from "../pages/dashboard/Profile"
+import UpdateDetails from "../pages/dashboard/UpdateDetails";
+import Menu from "../pages/Menu/Menu"
 import AddNewMenu from "../pages/Menu/AddNewMenu";
 import UpdateMenu from "../pages/Menu/UpdateMenu";
-import ProtectedRoute from "../components/ProtectedRoute";
+import Feedback from "../pages/dashboard/Feedback";
+import Notification from "../pages/dashboard/Notification"
+import Support from "../pages/dashboard/Support"
+import Settings from "../pages/dashboard/Settings"
+import Change_Password from "../pages/dashboard/Change_Password";
+
 
 const ROUTES = createBrowserRouter([
   {
@@ -97,6 +98,10 @@ const ROUTES = createBrowserRouter([
             path: "settings",
             element: <Settings />,
           },
+          {
+            path: "change-password",
+            element: <Change_Password/>
+          }
         ],
       },
     ],

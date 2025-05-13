@@ -27,6 +27,7 @@ export const dashboardChildren = [
   { page: "Menus", path: "/menus" },
   { page: "Feedback", path: "/feedback" },
   { page: "Notifications", path: "/notifications" },
+  { pages: "Change Password", path: "/change-password"},
   { page: "Support", path: "/support" },
   { page: "Settings", path: "/settings" },
 ];
