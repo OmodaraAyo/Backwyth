@@ -14,10 +14,10 @@ export const ButtonLoader = ()=> {
 
 export const PageLoader = () => {
     return(
-        <div className="flex justify-center h-full">
+        <div className="flex justify-center h-full py-20">
             <ClipLoader
-                color="#fff"
-                size={24}
+                color="#b5b5b5a4"
+                size={30}
                 aria-label="Loading Spinner"
                 data-testid="loader"
             />  
