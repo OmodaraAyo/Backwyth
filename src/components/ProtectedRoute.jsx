@@ -4,7 +4,7 @@ import { useNavigate } from "react-router";
 import Context from "../context";
 import { getAuthToken } from "../Utils/Token";
 import { setUserDetails } from "../store/userSlice";
-import { ButtonLoader } from "../Utils/Utils";
+import { ButtonLoader, PageLoader } from "../Utils/Utils";
 
 const ProtectedRoute = ({ children }) => {
     const user = useSelector((state) => state?.user?.user);
@@ -24,12 +24,12 @@ const ProtectedRoute = ({ children }) => {
                 }
             }).catch(()=> navigate("/auth"))
         } else if (!token) {
-            navigate("auth")
+            // navigate("auth")
         }
     }, [user]);
 
     if(!user){
-        return <ButtonLoader/>
+        return <PageLoader/>
     }
 
     return children

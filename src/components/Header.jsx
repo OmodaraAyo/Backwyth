@@ -118,7 +118,7 @@ const Header = () => {
               animate={{ opacity: 0.5 }}
               exit={{ opacity: 0 }}
               transition={{ duration: 0.3 }}
-              className="fixed inset-0 bg-black z-10 h-[100vh]"
+              className="fixed inset-0 bg-black z-10 h-[100dvh]"
             />
 
             {/* Sidebar */}
@@ -127,7 +127,7 @@ const Header = () => {
               animate={{ x: 0 }}
               exit={{ x: "-100%" }}
               transition={{ type: "tween", duration: 0.3 }}
-              className="fixed top-0 left-0 h-[100vh] w-4/5 bg-[#07020D] z-[100] shadow-lg p-6 pt-16 flex flex-col overflow-y-auto"
+              className="fixed top-0 left-0 h-[100dvh] w-4/5 bg-[#07020D] z-[100] shadow-lg p-6 pt-16 flex flex-col justify-center overflow-y-auto"
             >
               <button
                 onClick={toggleMenu}
@@ -136,7 +136,7 @@ const Header = () => {
                 <X className="w-6 h-6 hover:text-gray-300 cursor-pointer" />
               </button>
 
-              <nav className="flex flex-col h-full border relative gap-4 font-semibold text-lg">
+              <nav className="flex flex-col h-[100dvh] border relative gap-4 font-semibold text-lg">
                 {filteredNavItems.map((item, index) =>
                   item.page === "Dashboard" && user?.loggedIn ? (
                     <div key={index}>
