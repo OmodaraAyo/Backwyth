@@ -34,8 +34,8 @@ const Login = ({ setShowLogin }) => {
       setIsLoading(true);
       const response = await SignInApi(payload);
       if (response?.status === 200) {
-        setIsLoading(false);
         await fetchCurrentUserDetails();
+        setIsLoading(false);
         toast.success(`${response?.data?.data?.response}`);
         navigate("/dashboard/profile");
         // setShowLogin(false);
