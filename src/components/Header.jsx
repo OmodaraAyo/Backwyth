@@ -70,7 +70,7 @@ const Header = () => {
               key={index}
               className={({ isActive }) => clsx(
                 "px-4 py-2 rounded-lg text-center transition-all duration-300 ease-in-out",
-                isActive ? "bg-white text-[#07020D]" : "hover:bg-[#6315db] hover:text-white"
+                isActive ? "bg-white text-[#07020D]" : " hover:text-white hover:-translate-y-1 hover:shadow-xl hover:bg-[#6315db]"
               )}
             >
               {item.page}
@@ -112,13 +112,13 @@ const Header = () => {
               animate={{ x: 0 }}
               exit={{ x: '-100%' }}
               transition={{ type: 'tween', duration: 0.3 }}
-              className="fixed top-0 left-0 h-[100vh] w-4/5 bg-[#07020D] z-[100] shadow-lg p-6 pt-20 flex flex-col overflow-y-auto"
+              className="fixed top-0 left-0 h-[100vh] w-4/5 bg-[#07020D] z-[100] shadow-lg p-6 pt-16 flex flex-col overflow-y-auto"
             >
               <button onClick={toggleMenu} className="absolute top-7 right-9 text-white">
                 <X className="w-6 h-6 hover:text-gray-300 cursor-pointer" />
               </button>
 
-              <nav className="flex flex-col gap-4 font-semibold text-lg">
+              <nav className="flex flex-col flex-grow gap-4 font-semibold text-lg">
                 {filteredNavItems.map((item, index) => (
                   item.page === "Dashboard" && user?.loggedIn ? (
                     <div key={index}>
@@ -183,20 +183,7 @@ const Header = () => {
                 ))}
               </nav>
 
-              {!user?.loggedIn && (
-                <div className="mt-auto">
-                  <Link
-                    to="/auth"
-                    state={{ backgroundLocation: location }}
-                    onClick={toggleMenu}
-                    className="block py-2 text-center font-semibold text-md border border-[#6315db] rounded hover:bg-[#6315db] text-gray-200"
-                  >
-                    Get Started
-                  </Link>
-                </div>
-              )}
-
-              <div className="absolute bottom-0 left-0 w-full py-4 text-center text-xs text-gray-500 border-t border-gray-700">
+              <div className=" w-full py-2 text-center text-[0.70rem] text-gray-500 border-t border-gray-700">
                 <p>© 2025 <span className="font-semibold text-white">Backwyth™</span></p>
                 <p>All rights reserved. Bringing everyone back with us.</p>
               </div>
