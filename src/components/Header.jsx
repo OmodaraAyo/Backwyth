@@ -16,7 +16,7 @@ const Header = () => {
 
   const filteredNavItems = user?.loggedIn
     ? navBarItems
-    : navBarItems.filter(item => item.page !== "Dashboard");
+    : navBarItems.filter((item) => item.page !== "Dashboard");
 
   useEffect(() => {
     const handleScroll = () => setIsScrolled(window.scrollY > 0);
@@ -45,21 +45,27 @@ const Header = () => {
     };
   }, [menuOpen]);
 
-  const toggleMenu = () => setMenuOpen(prev => !prev);
-  const toggleDashboardDropdown = () => setDashboardOpen(prev => !prev);
+  const toggleMenu = () => setMenuOpen((prev) => !prev);
+  const toggleDashboardDropdown = () => setDashboardOpen((prev) => !prev);
 
   return (
-    <header className={clsx(
-      "border-b-2 sticky top-0 z-50 transition-all duration-300",
-      isScrolled && "bg-[#07020D] backdrop-blur-lg backdrop-brightness-110"
-    )}>
+    <header
+      className={clsx(
+        "border-b-2 sticky top-0 z-50 transition-all duration-300",
+        isScrolled && "bg-[#07020D] backdrop-blur-lg backdrop-brightness-110"
+      )}
+    >
       <div className="container mx-auto h-full flex justify-between items-center px-4 py-3">
         <div className="flex items-center gap-4">
           <button onClick={toggleMenu} className="md:hidden focus:outline-none">
-            <Menu className="w-10 h-10 text-white" cursor="pointer"/>
+            <Menu className="w-10 h-10 text-white" cursor="pointer" />
           </button>
           <Link to="/">
-            <img src={images.logo} alt="logo" className="w-[4rem] md:w-[5rem]" />
+            <img
+              src={images.logo}
+              alt="logo"
+              className="w-[4rem] md:w-[5rem]"
+            />
           </Link>
         </div>
 
@@ -68,10 +74,14 @@ const Header = () => {
             <NavLink
               to={item.path}
               key={index}
-              className={({ isActive }) => clsx(
-                "px-4 py-2 rounded-lg text-center transition-all duration-300 ease-in-out",
-                isActive ? "bg-white text-[#07020D]" : " hover:text-white hover:-translate-y-1 hover:shadow-xl hover:bg-[#6315db]"
-              )}
+              className={({ isActive }) =>
+                clsx(
+                  "px-4 py-2 rounded-lg text-center transition-all duration-300 ease-in-out",
+                  isActive
+                    ? "bg-white text-[#07020D]"
+                    : " hover:text-white hover:-translate-y-1 hover:shadow-xl hover:bg-[#6315db]"
+                )
+              }
             >
               {item.page}
             </NavLink>
@@ -80,7 +90,12 @@ const Header = () => {
 
         <div className="block">
           {user?.loggedIn ? (
-            <div title="logout"><LogOut cursor="pointer" className="text-red-600 hover:text-red-700 w-7 h-7"/></div>
+            <div title="logout">
+              <LogOut
+                cursor="pointer"
+                className="text-red-600 hover:text-red-700 w-7 h-7"
+              />
+            </div>
           ) : (
             <Link
               to="/auth"
@@ -108,18 +123,21 @@ const Header = () => {
 
             {/* Sidebar */}
             <motion.div
-              initial={{ x: '-100%' }}
+              initial={{ x: "-100%" }}
               animate={{ x: 0 }}
-              exit={{ x: '-100%' }}
-              transition={{ type: 'tween', duration: 0.3 }}
+              exit={{ x: "-100%" }}
+              transition={{ type: "tween", duration: 0.3 }}
               className="fixed top-0 left-0 h-[100vh] w-4/5 bg-[#07020D] z-[100] shadow-lg p-6 pt-16 flex flex-col overflow-y-auto"
             >
-              <button onClick={toggleMenu} className="absolute top-7 right-9 text-white">
+              <button
+                onClick={toggleMenu}
+                className="absolute top-7 right-9 text-white"
+              >
                 <X className="w-6 h-6 hover:text-gray-300 cursor-pointer" />
               </button>
 
-              <nav className="flex flex-col flex-grow gap-4 font-semibold text-lg">
-                {filteredNavItems.map((item, index) => (
+              <nav className="flex flex-col relative flex-grow gap-4 font-semibold text-lg">
+                {filteredNavItems.map((item, index) =>
                   item.page === "Dashboard" && user?.loggedIn ? (
                     <div key={index}>
                       <div
@@ -141,9 +159,12 @@ const Header = () => {
                             exit="hidden"
                             variants={{
                               hidden: { opacity: 0, height: 0 },
-                              visible: { opacity: 1, height: 'auto' }
+                              visible: { opacity: 1, height: "auto" },
                             }}
-                            transition={{ staggerChildren: 0.07, delayChildren: 0.1 }}
+                            transition={{
+                              staggerChildren: 0.07,
+                              delayChildren: 0.1,
+                            }}
                             className="ml-4 mt-2 flex flex-col gap-2 max-h-40 overflow-y-auto scrollbar-custom rounded-md"
                           >
                             {dashboardChildren.map((child, index) => (
@@ -155,12 +176,16 @@ const Header = () => {
                                 transition={{ duration: 0.3 }}
                               >
                                 <NavLink
-                                  to={"/dashboard"+child.path}
+                                  to={"/dashboard" + child.path}
                                   onClick={toggleMenu}
-                                  className={({ isActive }) => clsx(
-                                    "text-sm inline-block w-full h-full",
-                                    isActive ? "text-white" : "text-gray-300 hover:text-[#6315db]"
-                                  )}
+                                  className={({ isActive }) =>
+                                    clsx(
+                                      "text-sm inline-block w-full h-full",
+                                      isActive
+                                        ? "text-white"
+                                        : "text-gray-300 hover:text-[#6315db]"
+                                    )
+                                  }
                                 >
                                   {child.page}
                                 </NavLink>
@@ -175,18 +200,28 @@ const Header = () => {
                       to={item.path}
                       key={index}
                       onClick={toggleMenu}
-                      className={({ isActive }) => clsx("transition-all duration-200 p-2 rounded-lg", isActive ? "text-white" : "text-gray-300 hover:text-white hover:bg-[#6315db]/20")}
+                      className={({ isActive }) =>
+                        clsx(
+                          "transition-all duration-200 p-2 rounded-lg",
+                          isActive
+                            ? "text-white"
+                            : "text-gray-300 hover:text-white hover:bg-[#6315db]/20"
+                        )
+                      }
                     >
                       {item.page}
                     </NavLink>
                   )
-                ))}
-              </nav>
+                )}
 
-              <div className=" w-full py-2 text-center text-[0.70rem] text-gray-500 border-t border-gray-700">
-                <p>© 2025 <span className="font-semibold text-white">Backwyth™</span></p>
-                <p>All rights reserved. Bringing everyone back with us.</p>
-              </div>
+                <div className="absolute bottom-0 w-full py-2 text-center text-[0.70rem] text-gray-500 border-t border-gray-700">
+                  <p>
+                    © 2025{" "}
+                    <span className="font-semibold text-white">Backwyth™</span>
+                  </p>
+                  <p>All rights reserved. Bringing everyone back with us.</p>
+                </div>
+              </nav>
             </motion.div>
           </>
         )}
