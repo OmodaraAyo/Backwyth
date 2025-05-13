@@ -16,7 +16,6 @@ function App() {
   const navigate = useNavigate();
   const location = useLocation();
   const backgroundLocation = location.state?.backgroundLocation;
-  
 
   const fetchCurrentUserDetails = async () => {
     try {

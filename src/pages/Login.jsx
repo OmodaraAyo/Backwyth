@@ -36,7 +36,7 @@ const Login = ({ setShowLogin }) => {
       if (response?.status === 200) {
         setIsLoading(false);
         toast.success(`${response?.data?.data?.response}`);
-        fetchCurrentUserDetails();
+        await fetchCurrentUserDetails();
         navigate("/dashboard/profile");
         // setShowLogin(false);
       }
