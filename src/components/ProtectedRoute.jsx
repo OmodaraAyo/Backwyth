@@ -4,6 +4,7 @@ import { useNavigate } from "react-router";
 import Context from "../context";
 import { getAuthToken } from "../Utils/Token";
 import { setUserDetails } from "../store/userSlice";
+import { ButtonLoader } from "../Utils/Utils";
 
 const ProtectedRoute = ({ children }) => {
     const user = useSelector((state) => state?.user?.user);
@@ -28,7 +29,7 @@ const ProtectedRoute = ({ children }) => {
     }, [user]);
 
     if(!user){
-        return <p className="text-white text-center">Loading...</p>
+        return <ButtonLoader/>
     }
 
     return children
