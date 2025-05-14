@@ -33,6 +33,7 @@ const Login = ({ setShowLogin }) => {
     try {
       setIsLoading(true);
       const response = await SignInApi(payload);
+      
       if (response?.status === 200) {
         await fetchCurrentUserDetails();
         setIsLoading(false);
