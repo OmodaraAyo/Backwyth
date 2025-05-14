@@ -2,7 +2,7 @@ import { useContext, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux"
 import { useNavigate } from "react-router";
 import Context from "../context";
-import { getAuthToken } from "../Utils/Token";
+import { clearAuthToken, getAuthToken } from "../Utils/Token";
 import { setUserDetails } from "../store/userSlice";
 import { ButtonLoader, PageLoader } from "../Utils/Utils";
 
@@ -20,11 +20,15 @@ const ProtectedRoute = ({ children }) => {
                 if(response.status === 200) {
                     dispatch(setUserDetails(response?.data?.data));
                 } else {
+                    clearAuthToken();
                     navigate("/auth");
                 }
-            }).catch(()=> navigate("/auth"))
+            }).catch(()=> {
+                clearAuthToken();
+                navigate("/");
+            })
         } else if (!token) {
-            // navigate("auth")
+            navigate("auth")
         }
     }, [user]);
 

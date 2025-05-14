@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from "react";
 import { useSelector } from "react-redux";
-import moment from "moment/moment";
 import { formatLabelName } from "../../helper/Formatter";
 import CustomEyeButton from "../../reusables/CustomEyeButton";
 import { Link, Outlet, useLocation } from "react-router-dom";
+import { formatDate } from "../../Utils/DateFormatter";
 
 const Profile = () => {
   const user = useSelector((state) => state?.user.user);
@@ -38,7 +38,7 @@ const Profile = () => {
     },
     {
       label: "Created At",
-      data: moment(user?.createAt, "MM/DD/YYYY HH:mm:ss").format("LLL"),
+      data: formatDate(user?.createAt),
     },
   ];
 

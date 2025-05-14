@@ -1,8 +1,8 @@
-import moment from "moment";
 import React from "react";
 import { useSelector } from "react-redux";
 import { Link, Outlet } from "react-router-dom";
 import { formatLabelName } from "../../helper/Formatter";
+import { formatDate } from "../../Utils/DateFormatter";
 
 const Menu = () => {
   const user = useSelector((state) => state?.user.user);
@@ -57,9 +57,7 @@ const Menu = () => {
                       {formatLabelName(menu.title)}
                     </td>
                     <td className="px-4 py-3 border-b border-r border-[#6315db]/30">
-                      {moment(menu?.createdAt, "MM/DD/YYYY HH:mm:ss").format(
-                        "LLL"
-                      )}
+                      {formatDate(menu?.createdAt)}
                     </td>
                     <td className="px-4 py-3 border-b border-[#6315db]/30">
                       <Link
