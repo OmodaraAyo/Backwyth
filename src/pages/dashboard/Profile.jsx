@@ -3,7 +3,7 @@ import { useSelector } from "react-redux";
 import { formatLabelName } from "../../helper/Formatter";
 import CustomEyeButton from "../../reusables/CustomEyeButton";
 import { Link, Outlet, useLocation } from "react-router-dom";
-import { formatDate } from "../../Utils/DateFormatter";
+import { formatDateTime } from "../../Utils/DateFormatter";
 
 const Profile = () => {
   const user = useSelector((state) => state?.user.user);
@@ -38,7 +38,7 @@ const Profile = () => {
     },
     {
       label: "Created At",
-      data: formatDate(user?.createAt),
+      data: formatDateTime(user?.createAt),
     },
   ];
 

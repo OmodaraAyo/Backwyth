@@ -2,7 +2,7 @@ import React from "react";
 import { useSelector } from "react-redux";
 import { Link, Outlet } from "react-router-dom";
 import { formatLabelName } from "../../helper/Formatter";
-import { formatDate } from "../../Utils/DateFormatter";
+import { formatDateTime } from "../../Utils/DateFormatter";
 
 const Menu = () => {
   const user = useSelector((state) => state?.user.user);
@@ -57,13 +57,15 @@ const Menu = () => {
                       {formatLabelName(menu.title)}
                     </td>
                     <td className="px-4 py-3 border-b border-r border-[#6315db]/30">
-                      {formatDate(menu?.createdAt)}
+                      {formatDateTime(menu?.createdAt)}
                     </td>
                     <td className="px-4 py-3 border-b border-[#6315db]/30">
                       <Link
                         to={`/dashboard/menus/${menu.optionId}/edit`}
-                        className="text-sm text-[#7a2fff] hover:underline"
+                        state={{ menu }}
+                        className="text-sm text-[#8037ff] hover:underline hover:underline-offset-2"
                       >
+                        {/* text-[#7a2fff] */}
                         Edit
                       </Link>
                     </td>
@@ -75,7 +77,7 @@ const Menu = () => {
             <div className="mt-8 flex justify-self-start">
               <Link
                 to={createNewMenu}
-                className="flex justify-center w-full bg-[#6315db] hover:bg-[#7a2fff] text-white font-medium py-2 px-4 rounded-lg transition-colors"
+                className="flex justify-center w-full bg-[#6315db] hover:bg-[#5111b3] text-white font-medium py-2 px-4 rounded-lg transition-colors"
               >
                 + Add New Menu
               </Link>
