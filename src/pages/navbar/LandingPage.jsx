@@ -40,7 +40,7 @@ const LandingPage = () => {
             </div>
 
             <div className="flex mt-5 w-full justify-center items-center flex-col md:flex-row gap-5 md:gap-8 font-semibold text-md">
-              <Link className="py-2 px-36 bg-white text-[#07020D] rounded-lg hover:bg-[#6315db] hover:text-white transition duration-300 ease-in-out -skew-x-14">
+              <Link className="py-2 px-29 sm:px-36 bg-white text-[#07020D] rounded-lg hover:bg-[#6315db] hover:text-white transition duration-300 ease-in-out -skew-x-14">
                 Book a demo
               </Link>
               <Link

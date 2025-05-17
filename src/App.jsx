@@ -21,7 +21,7 @@ function App() {
   const fetchCurrentUserDetails = async () => {
     try {
       const response = await CurrentUserApi();
-      console.log("Current User Details: ", response);
+      
       if (response?.status === 200) {
         dispatch(setUserDetails(response?.data?.data));
       }

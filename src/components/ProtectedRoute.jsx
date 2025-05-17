@@ -4,7 +4,7 @@ import { useNavigate } from "react-router";
 import Context from "../context";
 import { clearAuthToken, getAuthToken } from "../Utils/Token";
 import { setUserDetails } from "../store/userSlice";
-import { ButtonLoader, PageLoader } from "../Utils/Utils";
+import { PageLoader } from "../Utils/PageLoader";
 
 const ProtectedRoute = ({ children }) => {
     const user = useSelector((state) => state?.user?.user);
@@ -28,7 +28,7 @@ const ProtectedRoute = ({ children }) => {
                 navigate("/");
             })
         } else if (!token) {
-            navigate("auth")
+            navigate(window.location.pathname)
         }
     }, [user]);
 

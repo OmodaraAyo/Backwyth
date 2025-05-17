@@ -35,7 +35,6 @@ const AddNewMenu = () => {
       ...data,
     };
 
-    console.log("payload:", payload);
 
     try {
       setIsLoading(true);
@@ -97,8 +96,8 @@ const AddNewMenu = () => {
               disabled={isDisabled || isLoading}
               className={`w-full font-medium py-2 px-4 rounded-lg transition-colors duration-300 ease-in-out items-center justify-center cursor-pointer ${
                 isDisabled
-                  ? "bg-gray-300 text-gray-500 cursor-not-allowed"
-                  : "bg-[#6315db] hover:bg-[#7a2fff] text-white"
+                  ? "bg-[#6315db]/70 text-[#FFFA] cursor-not-allowed"
+                  : "bg-[#6315db] hover:bg-[#5111b3] text-white"
               } ${isLoading && "cursor-progress"}`}
             >
               {isLoading ? <ButtonLoader /> : "Save Menu"}
