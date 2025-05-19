@@ -10,10 +10,7 @@ const Menu = () => {
   const createNewMenu = "/dashboard/menus/add";
 
   return (
-    <section
-      id="menus"
-      className="w-full h-full bg-[#07020D]/90 text-white px-2 sm:px-8 py-6"
-    >
+    <section id="menus" className="w-full h-full bg-[#07020D]/90 text-white px-2 sm:px-8 py-6">
       <div className="mx-auto">
         {user?.options.length === 0 ? (
           <div className="flex flex-col text-center p-4 space-y-3 text-xl">
@@ -46,10 +43,7 @@ const Menu = () => {
               </thead>
               <tbody>
                 {user?.options.map((menu, index) => (
-                  <tr
-                    key={index}
-                    className="hover:bg-[#0e021a] transition-colors"
-                  >
+                  <tr key={index} className="hover:bg-[#0e021a] transition-colors">
                     <td className="px-4 py-3 border-b border-r border-[#6315db]/30">
                       {index + 1}
                     </td>
@@ -77,7 +71,7 @@ const Menu = () => {
             <div className="mt-8 flex justify-self-start">
               <Link
                 to={createNewMenu}
-                className="flex justify-center w-full bg-[#6315db] hover:bg-[#5111b3] text-white font-medium py-2 px-4 rounded-lg transition-colors"
+                className="flex justify-center w-full bg-[#6315db] hover:bg-[#5111b3] text-white font-medium text-sm md:text-base py-2 px-4 rounded-lg transition-colors"
               >
                 + Add New Menu
               </Link>

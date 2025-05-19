@@ -87,5 +87,5 @@ body {
   @apply border border-[#6315db]/30 text-base font-medium
 }
 .menuTable td{
-  @apply border border-[#6315db]/30 text-base font-normal
+  @apply border border-[#6315db]/30 text-sm md:text-base font-normal
 }

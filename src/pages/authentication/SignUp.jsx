@@ -179,7 +179,7 @@ const SignUp = ({ setShowLogin }) => {
                 : "bg-[#6315db] hover:bg-[#5111b3] cursor-pointer"
             } disabled:opacity-60`}
           >
-            {isloading ? <ButtonLoader /> : "Sign Up"}
+            {isloading ? <ButtonLoader size={18}/> : "Sign Up"}
           </button>
         </form>
       </div>
