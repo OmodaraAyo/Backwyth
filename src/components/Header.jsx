@@ -6,6 +6,7 @@ import { useSelector } from "react-redux";
 import { LogOut, Menu, X, ChevronDown, ChevronUp } from "lucide-react";
 import { dashboardChildren, navBarItems } from "../assets/MultiListView.jsx";
 import { motion, AnimatePresence } from "framer-motion";
+import consoleLog from "../reusables/MyConsoleLog.jsx";
 
 const Header = () => {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -64,7 +65,7 @@ const Header = () => {
             <img
               src={images.logo}
               alt="logo"
-              className="w-[4rem] md:w-[5rem]"
+              className="w-[4rem] md:w-[4.6rem]"
             />
           </Link>
         </div>
@@ -93,7 +94,7 @@ const Header = () => {
             <div title="logout">
               <LogOut
                 cursor="pointer"
-                className="text-red-600 hover:text-red-700 w-7 h-7"
+                className="text-red-600 hover:text-red-700 w-[2.2rem] h-[3rem] md:w-[2.1rem] md:h-[2.1rem]"
               />
             </div>
           ) : (

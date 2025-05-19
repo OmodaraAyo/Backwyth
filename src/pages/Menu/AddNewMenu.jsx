@@ -100,7 +100,7 @@ const AddNewMenu = () => {
                   : "bg-[#6315db] hover:bg-[#5111b3] text-white"
               } ${isLoading && "cursor-progress"}`}
             >
-              {isLoading ? <ButtonLoader /> : "Save Menu"}
+              {isLoading ? <ButtonLoader size={18}/> : "Save Menu"}
             </button>
           </div>
         </form>

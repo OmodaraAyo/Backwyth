@@ -101,7 +101,7 @@ const Login = ({ setShowLogin }) => {
               } 
               disabled:opacity-60`}
           >
-            {isloading ? <ButtonLoader /> : "Sign In"}
+            {isloading ? <ButtonLoader size={18}/> : "Sign In"}
           </button>
 
           {/* Divider and Other Sign In Options */}
