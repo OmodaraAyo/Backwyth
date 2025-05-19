@@ -3,6 +3,7 @@ import { Link, useLocation } from "react-router-dom";
 import images from "../../assets/images"
 import Particles from "../../components/Particles";
 import ShiyText from "../../components/ShinyText"
+import KeyFeatures from "../../components/KeyFeatures";
 
 const LandingPage = () => {
   const location = useLocation();
@@ -23,7 +24,7 @@ const LandingPage = () => {
           />
         </div>
 
-        <div className="absolute top-0 left-0 right-0 bottom-0 w-full h-full pt-36">
+        <div className="absolute top-0 left-0 right-0 bottom-0 w-full h-full pt-31">
           <div className="container mx-auto flex flex-col items-center py-2">
             <div className="px-4 text-center flex flex-col items-center justify-center ">
               <h1 className="w-full lg:max-w-10/12 text-center text-[2.30rem] font-semibold tracking-wider leading-14">
@@ -65,6 +66,7 @@ const LandingPage = () => {
           </div>
         </div>
       </div>
+        <KeyFeatures/>
     </section>
   );
 };

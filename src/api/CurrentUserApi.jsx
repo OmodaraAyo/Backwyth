@@ -1,9 +1,9 @@
-import { companyId } from "../reusables/Ref"
 import { axiosInstance, handleError } from "./MyConfig"
 
-export const CurrentUserApi = () => {
+export const CurrentUserApi = async () => {
     try {
-        const response = axiosInstance.get(`/company/${companyId}`)
+        const companyId = localStorage.getItem('ref')
+        const response =  await axiosInstance.get(`/company/${companyId}`)
         return response      
     } catch (error) {
         handleError(error)
