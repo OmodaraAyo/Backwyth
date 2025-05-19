@@ -14,7 +14,6 @@ import { consoleLog } from '../../reusables/MyConsoleLog';
 const UpdateMenu = () => {
   const location = useLocation();
   const { menu } = location.state || {};
-  consoleLog("from update page: ", menu)
   const [data, setData] = useState({ newMenuTitle: formatLabelName(menu?.title) || "" });
   const [isLoading, setIsLoading] = useState(false);
   const [isDeleting, setIsDeleting] = useState(false);
@@ -93,7 +92,7 @@ const UpdateMenu = () => {
   }, [menu, navigate]);
 
   return (
-    <div className='fixed top-0 right-0 bottom-0 left-0 w-full h-full z-50 flex justify-center items-center bg-black/40'>
+    <section id='update-menu' className='fixed top-0 right-0 bottom-0 left-0 w-full h-full z-50 flex justify-center items-center bg-black/40'>
       <div className="w-full mx-4 sm:mx-auto bg-white shadow-lg p-6 max-w-md rounded-xl border border-[#6315db]/30 text-[#07020D]">
         <button
           className="block ml-auto mb-2 cursor-pointer"
@@ -174,7 +173,7 @@ const UpdateMenu = () => {
           </div>
         </form>
       </div>
-    </div>
+    </section>
   );
 };
 

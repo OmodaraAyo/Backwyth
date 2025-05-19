@@ -17,7 +17,7 @@ import Feedback from "../pages/dashboard/Feedback";
 import Notification from "../pages/dashboard/Notification"
 import Support from "../pages/dashboard/Support"
 import Settings from "../pages/dashboard/Settings"
-import Change_Password from "../pages/dashboard/Change_Password";
+import ChangePassword from "../pages/dashboard/ChangePassword";
 
 
 const ROUTES = createBrowserRouter([
@@ -100,7 +100,7 @@ const ROUTES = createBrowserRouter([
           },
           {
             path: "change-password",
-            element: <Change_Password/>
+            element: <ChangePassword/>
           }
         ],
       },

@@ -62,7 +62,7 @@ const AddNewMenu = () => {
   }, []);
 
   return (
-    <div className="fixed top-0 right-0 bottom-0 left-0 w-full h-full z-50 flex justify-center items-center bg-black/40">
+    <section id="add-menu"  className="fixed top-0 right-0 bottom-0 left-0 w-full h-full z-50 flex justify-center items-center bg-black/40">
       <div className="w-full mx-4 sm:mx-auto bg-white shadow-lg p-6 max-w-md rounded-xl border border-[#6315db]/30 text-[#07020D]">
         <button
           className="block ml-auto mb-2 cursor-pointer"
@@ -105,7 +105,7 @@ const AddNewMenu = () => {
           </div>
         </form>
       </div>
-    </div>
+    </section>
   );
 };
 

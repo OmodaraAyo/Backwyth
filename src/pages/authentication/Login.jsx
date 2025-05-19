@@ -77,7 +77,7 @@ const Login = ({ setShowLogin }) => {
               value={data.password}
               autoComplete="on"
               name="password"
-              placeholder="8+ strong character"
+              placeholder="9+ strong character"
               className="w-full px-4 py-3 text-base text-gray-900 placeholder:text-gray-400 bg-transparent outline-none rounded-lg"
               required
             />

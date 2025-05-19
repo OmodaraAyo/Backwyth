@@ -114,7 +114,7 @@ const UpdateDetails = () => {
   ];
 
   return (
-    <div>
+    <section id="update-company-info">
       <h2 className="text-xl font-semibold mb-4 text-[#6315db]">
         Edit Company Information
       </h2>
@@ -202,7 +202,7 @@ const UpdateDetails = () => {
           {isLoading ? <ButtonLoader /> : "Save Changes"}
         </button>
       </form>
-    </div>
+    </section>
   );
 };
 
